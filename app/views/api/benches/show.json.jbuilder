@@ -1,0 +1,1 @@
+json.extract! @bench, :lat, :lng, :descriptions

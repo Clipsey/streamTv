@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaBar from './mediaBar';
 
 export const Video = (props) => (
   <div className="video-box">
@@ -11,5 +12,6 @@ export const Video = (props) => (
       muted={true}
       >
       </video>
+    <MediaBar />
   </div>
 )

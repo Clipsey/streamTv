@@ -5,17 +5,19 @@
 
 // const videoSourceBuffer = myMediaSource
 //   .addSourceBuffer('video/mp4; codecs="avc1.64001e"')
+import Hls from 'hls.js';
 
 const startup = (timeDelay) => {
   setTimeout(() => {
     const videoTag = document.getElementById('videoTag');
     if (Hls.isSupported()) {
-      let hls = new Hls();
+      let hls = new Hls({enableWorker: false});
       // console.log(hls)
       hls.attachMedia(videoTag);
       hls.on(Hls.Events.MEDIA_ATTACHED, function () {
         console.log("video and hls.js are now bound together !");
-        //Add hls.loadSource here
+        //Add hls.loadSource her;
+        hls.loadSource("http://157.230.204.147/live/mystream/index.m3u8");
         hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
           console.log(`manifest loaded, found ${data.levels.length} quality level`);
           if (videoTag != undefined) {
