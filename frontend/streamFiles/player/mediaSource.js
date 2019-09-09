@@ -17,7 +17,6 @@ const startup = (timeDelay) => {
       hls.on(Hls.Events.MEDIA_ATTACHED, function () {
         console.log("video and hls.js are now bound together !");
         //Add hls.loadSource her;
-        hls.loadSource("http://157.230.204.147/live/mystream/index.m3u8");
         hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
           console.log(`manifest loaded, found ${data.levels.length} quality level`);
           if (videoTag != undefined) {
