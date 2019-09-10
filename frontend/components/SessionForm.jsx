@@ -37,7 +37,7 @@ export class SessionForm extends React.Component {
         });
       })
       .fail(() => {
-        console.log(this.props.errors);
+        // console.log(this.props.errors);
       })
 
   }
@@ -223,8 +223,6 @@ export class SessionForm extends React.Component {
         }
       }
     }
-    console.log(errors);
-
     return (
 
       <div>

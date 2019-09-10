@@ -18,26 +18,23 @@ const startup = (currentUser) => {
     let hls = new Hls({enableWorker: false});
     hls.attachMedia(videoTag);
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-      console.log("video and hls.js are now bound together !");
       //Add hls.loadSource her;
       const attempt = () => {
       };
 
       hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-        console.log(`manifest loaded, found ${data.levels.length} quality level`);
         if (videoTag != undefined) {
           videoTag.play();
         }
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
-        console.log(data);
+        // console.log(data);
         // ++attemptNum;
         // if(attemptNum <= 10) {
         //   timeout = setTimeout(attempt, 1000);
         // }
       });
 
-      console.log("attempt");
       attempt();
 
     });

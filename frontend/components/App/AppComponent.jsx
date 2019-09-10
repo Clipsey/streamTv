@@ -15,7 +15,6 @@ import LoginModalContainer from '../LoginModal/LoginModalContainer'
 export class AppComponent extends React.Component { 
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   componentDidMount() {
