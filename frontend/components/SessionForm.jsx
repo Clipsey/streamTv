@@ -207,7 +207,7 @@ export class SessionForm extends React.Component {
     // });
 
     let errors = this.props.errors.session;
-    if (errors) {
+    if (errors && errors.length > 0) {
       errors = errors.map((error) => {
         return <div key={error}>{error}</div>
       });

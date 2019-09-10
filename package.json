@@ -1,5 +1,5 @@
 {
-  "name": "--skip-test-unit",
+  "name": "twitch-copy",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.5.5",
