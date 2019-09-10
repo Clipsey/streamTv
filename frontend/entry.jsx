@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
 // import {postUser, postSession, deleteSession } from './utils/session_utils';
-// import {createNewUser, login, logout} from './actions/session_actions';
+import {createNewUser, login, logout} from './actions/session_actions';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
       store = configureStore();
   }
 
-  // window.login = login;
-  // window.logout = logout;
+  window.login = login;
+  window.logout = logout;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 

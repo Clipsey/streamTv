@@ -7,6 +7,9 @@ export class MediaBar extends React.Component {
   }
 
   render () {
-    
+    return (
+      <div></div>
+    )
   }
 }
+export default MediaBar;

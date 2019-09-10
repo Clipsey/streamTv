@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const Greeting = ({currentUser, logout}) => {
+export const GreetingComponent = ({currentUser, logout}) => {
   let greetingDisplay = "";
 
   if (currentUser) {
