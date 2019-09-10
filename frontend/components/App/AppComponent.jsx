@@ -6,7 +6,7 @@ import { SignupFormContainer } from '../SignupFormContainer';
 import { createNewUser, login, logout } from '../../actions/session_actions';
 import { AuthRoute } from '../util/route_util';
 
-import { Video } from '../Video/video';
+import { Video } from '../Video/Video';
 import startup from '../Video/mediaSource';
 
 import NavBarContainer from '../NavBar/NavBarContainer';
