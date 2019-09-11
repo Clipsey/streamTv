@@ -1,7 +1,8 @@
 import {TOGGLE_LOGIN_MODAL} from '../actions/ui_modal_actions';
 
 const defaultState = {
-  modal: true
+  modal: true,
+  formType: 'login'
 }
 
 const uiModalReducer = (state = defaultState, action) => {
@@ -12,6 +13,7 @@ const uiModalReducer = (state = defaultState, action) => {
     case TOGGLE_LOGIN_MODAL:
       newState = Object.assign({}, state);
       newState['modal'] = action.status;
+      newState['formType'] = action.formType;
       return newState;
     default:
       return state;

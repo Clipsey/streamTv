@@ -11,11 +11,12 @@ const msp = (state, ownProps) => {
       password: ""
     },
     modalStatus: state.ui.modal,
+    modalTab: state.ui.formType
   }
 }
 const mdp = (dispatch) => {
   return {
-    loginModal: (status) => dispatch(toggleLoginModal(status)),
+    loginModal: (status, formType) => dispatch(toggleLoginModal(status, formType)),
     resetErrors: () => dispatch(resetErrors())
   }
 }

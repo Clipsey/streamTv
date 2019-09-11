@@ -7,7 +7,7 @@
 //   .addSourceBuffer('video/mp4; codecs="avc1.64001e"')
 import Hls from 'hls.js';
 
-const startup = (currentUser) => {
+const startup = (currentUser, streamKey) => {
   if (currentUser == undefined) return;
 
   let attemptNum = 0;
@@ -20,6 +20,7 @@ const startup = (currentUser) => {
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
       //Add hls.loadSource her;
       const attempt = () => {
+        hls.loadSource(`http://157.230.204.147/live/${streamKey}/index.m3u8`);
       };
 
       hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
@@ -28,11 +29,11 @@ const startup = (currentUser) => {
         }
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
-        // console.log(data);
-        // ++attemptNum;
-        // if(attemptNum <= 10) {
-        //   timeout = setTimeout(attempt, 1000);
-        // }
+        console.log(data);
+        ++attemptNum;
+        if(attemptNum <= 10) {
+          timeout = setTimeout(attempt, 1000);
+        }
       });
 
       attempt();

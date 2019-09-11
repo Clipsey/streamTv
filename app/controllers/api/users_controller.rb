@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     @user.stream_key = SecureRandom::hex(20)
 
     if @user.save
-      login!(@user) 
+      login!(@user)
       render :show
     else
       flash[:errors] = @user.errors.full_messages
@@ -14,6 +14,6 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :email)
   end
 end

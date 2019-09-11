@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NavBarComponent from './NavBarComponent';
 import { toggleLoginModal } from '../../actions/ui_modal_actions';
+import { logout } from '../../actions/session_actions';
 
 
 const msp = (state, ownProps) => {
@@ -12,7 +13,8 @@ const msp = (state, ownProps) => {
 }
 const mdp = dispatch => {
   return {
-    loginModal: (status, formType) => dispatch(toggleLoginModal(status, formType))
+    loginModal: (status, formType) => dispatch(toggleLoginModal(status, formType)),
+    logout: () => dispatch(logout())
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {LoginFormContainer} from '../../components/LoginFormContainer';
-import {SignupFormContainer} from '../../components/SignupFormContainer';
+import {LoginFormContainer} from '../Session/LoginFormContainer';
+import {SignupFormContainer} from '../Session/SignupFormContainer';
 
 // #392e5c
 // #2c2541
@@ -24,24 +24,38 @@ class LoginModalComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "Log In",
       username: `${props.username}`,
       password: `${props.password}`
     }
     this.toggleModal = this.toggleModal.bind(this);
     this.clearModal = this.clearModal.bind(this);
+    this.tabClick = this.tabClick.bind(this);
   }
 
   toggleModal() {
-    this.props.loginModal(!this.props.modalStatus);
     this.props.resetErrors();
+    if (this.props.formType === 'login')
+      this.props.loginModal(!this.props.modalStatus, 'signup');
+    else
+      this.props.loginModal(!this.props.modalStatus, 'login');
   }
 
   clearModal(e) {
     if (e.target.id === 'overlay') {
-      this.props.loginModal(false);
       this.props.resetErrors();
+      this.props.loginModal(false, 'login');
     }
+  }
+
+  tabClick(e) {
+    if(e.target.id === 'loginTab')
+      this.props.loginModal(this.props.modalStatus, 'login');
+    else
+      this.props.loginModal(this.props.modalStatus, 'signup')
+    // this.setState({
+    //   tab: e.target.id
+    // })
+    this.props.resetErrors();
   }
 
   render () {
@@ -59,7 +73,7 @@ class LoginModalComponent extends React.Component {
     const totalBox = {
       // '380 + 20 + 30 + 5'
       width: '460px',
-      height: '437px',
+      height: '387px',
       position: 'absolute',
       zIndex: '100',
       top: '25%',
@@ -70,7 +84,7 @@ class LoginModalComponent extends React.Component {
       backgroundColor: '#232127',
       zIndex: '2',
       width: '380px',
-      height: '407px',
+      height: '357px',
       padding: '30px 20px',
       borderRadius: '4px',
       float: 'left'
@@ -84,11 +98,22 @@ class LoginModalComponent extends React.Component {
       float: 'left'
     }
 
+    if (this.props.modalTab === 'signup') {
+      totalBox['height'] = '589px';
+      formBox['height'] = '550px';
+      totalBox['top'] = '15%';
+    }
+
+    
+
     return (
       <div style={overlay} id="overlay" onClick={this.clearModal}>
         <div style={totalBox}>
           <div style={formBox}>
-            {this.state.tab === 'Log In' ? <LoginFormContainer /> : <SignupFormContainer /> }
+            {this.props.modalTab === 'login' 
+              ? <LoginFormContainer tabClick={this.tabClick}/> 
+              : <SignupFormContainer tabClick={this.tabClick}/> 
+              }
           </div>
           <div style={xBox} onClick={this.toggleModal}>
           </div>

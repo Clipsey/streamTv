@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { SessionForm } from './SessionForm';
-import { createNewUser } from '../actions/session_actions';
-import { toggleLoginModal } from '../actions/ui_modal_actions';
-import { resetErrors } from '../actions/session_actions';
+import { createNewUser } from '../../actions/session_actions';
+import { toggleLoginModal } from '../../actions/ui_modal_actions';
+import { resetErrors } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   errors: state.errors,
@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   processForm: (formUser) => dispatch(createNewUser(formUser)),
+  loginModal: (status, formType) => dispatch(toggleLoginModal(status, formType)),
   resetErrors: () => dispatch(resetErrors())
 });
 

@@ -11,10 +11,18 @@ export class NavBarComponent extends React.Component {
   constructor(props) {
     super(props);
     this.toggleModal = this.toggleModal.bind(this);
+    this.logoutCheck = this.logoutCheck.bind(this);
   }
 
   toggleModal(formType) {
-    return () => this.props.loginModal(!this.props.modalStatus, formType);
+    return () => {
+      if (this.props.currentUser) return;
+      this.props.loginModal(!this.props.modalStatus, formType);
+    }
+  }
+
+  logoutCheck() {
+    if(this.props.currentUser) this.props.logout();
   }
 
   render() {
@@ -26,7 +34,8 @@ export class NavBarComponent extends React.Component {
       height: '50px',
       display: 'flex',
       color: 'white',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      position: "fixed"
     }
     const leftBarStyle = {
       display: 'flex',
@@ -60,9 +69,11 @@ export class NavBarComponent extends React.Component {
         <section style={rightBarStyle}>
           <div style={visualBox}>Search</div>
           <div style={visualBox}>Crown</div>
-          <div style={visualBox} onClick={this.toggleModal('login')} >Log In</div>
-          <div style={visualBox}>Sign Up</div>
-          <div style={visualBox}>User</div>
+          <div style={visualBox} onClick={this.toggleModal('login')}>Log In</div>
+          <div style={visualBox} onClick={this.toggleModal('signup')}>Sign Up</div>
+          <div style={visualBox} onClick={this.logoutCheck}>
+            {this.props.currentUser ? "Sign Out" : "User"}
+          </div>
         </section>
       </div>
     )
