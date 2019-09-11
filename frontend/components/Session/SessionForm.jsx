@@ -298,23 +298,16 @@ export class SessionForm extends React.Component {
     let dobYearFocus = 'regularFocus';
 
     let errors = this.props.errors.session;
-    let firstError = null;
+    console.log(errors);
+    let errorsDiv = null;
     if (errors && errors.length > 0) {
-      firstError = this.props.errors.session;
-      console.log(firstError);
 
-      errors = <div key={errors[0]}>{firstError[0]}</div>
-      // errors = errors.map((error) => {
-      //   return <div key={error}>{error}</div>
-      // });
-      console.log(firstError[0].includes('Username'));
-      console.log(firstError[0].includes('Email'));
-      console.log(firstError[0].includes('Password'));
-      if (firstError[0].includes('Username')) {
+      errorsDiv = <div key={errors}>{errors}</div>
+      if (errors.includes('Username')) {
         usernameClass = 'redFocus';
-      } else if (firstError[0].includes('Password')) {
+      } else if (errors.includes('Password')) {
         passwordClass = 'redFocus';
-      } else if (firstError[0].includes('Email')) {
+      } else if (errors.includes('Email')) {
         emailClass = 'redFocus';
       }
     }
@@ -343,18 +336,18 @@ export class SessionForm extends React.Component {
               </div>
           </div>
 
-          {firstError !== null && 
+          {errors !== null && 
             <div style={errorStyle}>
               {/* Add picture-icon here  - for Twitch Icon on login/sign up form */}
               <div style={errorIconStyle}></div>
-              <div style={errorTextStyle}>{errors}</div>
+              <div style={errorTextStyle}>{errorsDiv}</div>
               <div style={errorSuggestionStyle}>Try not being wrong?</div>
             </div>
           }
           
           <div style={usernameLabel}>
             <div style={labelText}>Username</div>
-            { firstError && firstError.includes("Username") && 
+            { errors && errors.includes("Username") && 
               <div style={errorFormIcon}></div>
             }
           </div>
@@ -365,7 +358,7 @@ export class SessionForm extends React.Component {
           {/* Add picture-icon here - for show password eye */}
           <div style={passwordLabel}>
             <div style={labelText}>Password</div>
-            { firstError && firstError.includes('Password') && 
+            { errors && errors.includes('Password') && 
               <div style={errorFormIcon}></div>
             }
           </div>
@@ -408,7 +401,7 @@ export class SessionForm extends React.Component {
           {this.props.formType === 'signup' && 
             <div style={emailLabel}>
               <div style={labelText}>Email</div>
-              { firstError && firstError.includes('Email') &&
+              { errors && errors.includes('Email') &&
                 <div style={errorFormIcon}></div>
               }
             </div>
