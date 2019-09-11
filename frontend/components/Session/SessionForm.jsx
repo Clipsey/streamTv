@@ -354,7 +354,7 @@ export class SessionForm extends React.Component {
           
           <div style={usernameLabel}>
             <div style={labelText}>Username</div>
-            { this.props.errors.session && this.props.errors.session.includes("Username") && 
+            { firstError && firstError.includes("Username") && 
               <div style={errorFormIcon}></div>
             }
           </div>
@@ -365,7 +365,7 @@ export class SessionForm extends React.Component {
           {/* Add picture-icon here - for show password eye */}
           <div style={passwordLabel}>
             <div style={labelText}>Password</div>
-            { this.props.errors.session && this.props.errors.session.includes('Password') && 
+            { firstError && firstError.includes('Password') && 
               <div style={errorFormIcon}></div>
             }
           </div>
@@ -408,7 +408,7 @@ export class SessionForm extends React.Component {
           {this.props.formType === 'signup' && 
             <div style={emailLabel}>
               <div style={labelText}>Email</div>
-              {this.props.errors.session && this.props.errors.session.includes("Email") &&
+              { firstError && firstError.includes('Email') &&
                 <div style={errorFormIcon}></div>
               }
             </div>
