@@ -2,25 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Video from './Video';
+import { getUserByName } from '../../actions/session_actions';
 
 const msp = (state, ownProps) => {
-  let streamKey = null;
-  let users = Object.values(state.entities.users);
-  for (let i = 0; i < users.length; ++i) {
-    if (ownProps.match.params.username === users[i].username) {
-      streamKey = users[i].stream_key;
-      break;
-    }
-  }
+
   return {
     // currentUser: state.users[state.session.id],
-    // streamKey
+    users: state.entities.users
   }
 }
 
 const mdp = (dispatch) => {
   return {
-    
+    getUserByName: (username) => dispatch(getUserByName(username))
   }
 }
 
