@@ -73,7 +73,7 @@ class LoginModalComponent extends React.Component {
     const totalBox = {
       // '380 + 20 + 30 + 5'
       width: '460px',
-      height: '387px',
+      height: '450px',
       position: 'absolute',
       zIndex: '100',
       top: '25%',
@@ -84,7 +84,7 @@ class LoginModalComponent extends React.Component {
       backgroundColor: '#232127',
       zIndex: '2',
       width: '380px',
-      height: '357px',
+      height: '420px',
       padding: '30px 20px',
       borderRadius: '4px',
       float: 'left'

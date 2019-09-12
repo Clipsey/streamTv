@@ -6,7 +6,8 @@ import { SignupFormContainer } from '../Session/SignupFormContainer';
 import { createNewUser, login, logout } from '../../actions/session_actions';
 import { AuthRoute } from '../util/route_util';
 
-import { Video } from '../Video/Video';
+// import { Video } from '../Video/Video';
+import VideoContainer from '../Video/VideoContainer';
 import startup from '../Video/mediaSource';
 
 import NavBarContainer from '../NavBar/NavBarContainer';
@@ -18,21 +19,16 @@ export class AppComponent extends React.Component {
     this.timeout = null;
   }
 
-  componentDidMount() {
-    if(this.props.currentUser && this.timeout == null) {
-      console.log("startup in mount")
-      startup(this.props.currentUser, this.props.streamKey);
-      this.timeout = setTimeout( () => {
-        this.timeout = null;
-      }, 10000);
-    }
-  }
-
   render() {
 
     const emptyBar = {
       width: '100%',
       height: '50px',
+    }
+    const base = {
+      backgroundColor: "#232129",
+      color: 'rgb(218, 216, 222)',
+      height: "100%"
     }
 
     if (this.props.currentUser && this.timeout == null) {
@@ -43,7 +39,7 @@ export class AppComponent extends React.Component {
       }, 10000);
     }
     return (
-      <div> 
+      <div style={base}> 
         <NavBarContainer />
         <div style={emptyBar}></div>
         {this.props.modalStatus && <LoginModalContainer /> }
@@ -55,7 +51,7 @@ export class AppComponent extends React.Component {
         {/* <GreetingContainer /> */}
         {/* <AuthRoute path="/signup" component={SignupFormContainer} /> */}
         {/* <AuthRoute path="/login" component={LoginFormContainer} /> */}
-        <Video />
+        <Route path="/users/:username" component={VideoContainer}></Route>
       </div>  
     );
   }

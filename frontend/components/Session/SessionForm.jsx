@@ -10,6 +10,7 @@ export class SessionForm extends React.Component {
       username: "",
       password: "",
       day: "",
+      month: "January",
       year: "",
       email: ""
     }
@@ -20,10 +21,20 @@ export class SessionForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  demoLogin() {
+    this.setState({
+      username: "TestUser",
+      password: "123456"
+    }, this.handleSubmit);
+
   }
 
   handleChange(e) {
-    this.props.resetErrors();
+    if(this.props.errors.session)
+      this.props.resetErrors();
     if (e.target.name === 'day') {
       const dayValue = parseInt(e.target.value, 10);
       if (dayValue === NaN || dayValue > 32 || dayValue < 1) {
@@ -42,8 +53,10 @@ export class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const user = Object.assign({}, this.state);
+    console.log(user);
+    this.props.resetErrors();
     this.props.processForm(user)
       .then(() => {
         this.props.loginModal(false, 'login');
@@ -201,6 +214,7 @@ export class SessionForm extends React.Component {
       marginTop: '20px',
       borderRadius: '4px',
       fontSize: '13px',
+      width: '100%'
     }
 
     const dobContainer = {
@@ -376,7 +390,7 @@ export class SessionForm extends React.Component {
                 }
               </div>
               <label style={dobBottom} id="dobId">
-                <select id="selectOverride" name="dob" style={dobMonthStyle} className={dobMonthFocus} placeholder="Month"
+                <select id="selectOverride" name="month" style={dobMonthStyle} className={dobMonthFocus} placeholder="Month"
                   onChange={this.handleChange}>
                   <option value="Month" disabled>Month</option>
                   <option value="January">January</option>
@@ -419,6 +433,7 @@ export class SessionForm extends React.Component {
 
           <button style={buttonStyle}> {this.buttonText} </ button>
         </form>
+        {this.props.formType === 'login' && <button style={buttonStyle} onClick={this.demoLogin}> Demo Login </ button> }
       </div>
     );
   }

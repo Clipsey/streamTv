@@ -53,7 +53,8 @@ export class NavBarComponent extends React.Component {
       paddingLeft: '5px',
       paddingRight: '6px',
       textAlign: 'center',
-      margin: 'auto'
+      margin: 'auto',
+      fontSize: '14px'
     }
 
     {/* Add picture-icon here */ }
@@ -69,8 +70,8 @@ export class NavBarComponent extends React.Component {
         <section style={rightBarStyle}>
           <div style={visualBox}>Search</div>
           <div style={visualBox}>Crown</div>
-          <div style={visualBox} onClick={this.toggleModal('login')}>Log In</div>
-          <div style={visualBox} onClick={this.toggleModal('signup')}>Sign Up</div>
+          { !this.props.currentUser && <div style={visualBox} onClick={this.toggleModal('login')}>Log In</div> }
+          { !this.props.currentUser && <div style={visualBox} onClick={this.toggleModal('signup')}>Sign Up</div> }
           <div style={visualBox} onClick={this.logoutCheck}>
             {this.props.currentUser ? "Sign Out" : "User"}
           </div>
