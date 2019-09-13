@@ -9,10 +9,8 @@ class Video extends React.Component {
   }
   componentDidMount() {
     this.props.getUserByName(this.props.match.params.username).then((action) => {
-      console.log(action.user)
       this.streamKey = action.user.stream_key;
       if (this.timeout == null) {
-        console.log("startup in mount");
         startup(this.props.currentUser, this.streamKey);
         this.timeout = setTimeout(() => {
           this.timeout = null;

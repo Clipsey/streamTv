@@ -13,28 +13,22 @@ const startup = (user, streamKey) => {
   let attemptNum = 0;
   let timeout = null;
 
-  console.log("videoSource");
-
   const videoTag = document.getElementById('videoTag');
   if (Hls.isSupported()) {
     let hls = new Hls({enableWorker: false});
     hls.attachMedia(videoTag);
-    console.log("hls supported");
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
       //Add hls.loadSource her;
-      console.log("media attached");
       const attempt = () => {
-        hls.loadSource(`http://157.230.204.147/live/${streamKey}/index.m3u8`);
+        hls.loadSource(`https://pitchhost.me/live/${streamKey}/index.m3u8`);
       };
 
       hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
         if (videoTag != undefined) {
-          console.log("hls play");
           videoTag.play();
         }
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
-        console.log(data);
         ++attemptNum;
         if(attemptNum <= 10) {
           timeout = setTimeout(attempt, 1000);

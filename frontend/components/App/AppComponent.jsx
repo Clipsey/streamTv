@@ -21,7 +21,6 @@ export class AppComponent extends React.Component {
 
   toggleUserDrop(e) {
     if (this.props.userDropDownStatus === false || this.props.modalStatus === true) return;
-    console.log(e.currentTarget);
     
     this.props.toggleUserDrop(!this.props.userDropDownStatus);
   }

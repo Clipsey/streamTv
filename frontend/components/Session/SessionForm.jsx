@@ -55,7 +55,6 @@ export class SessionForm extends React.Component {
   handleSubmit(e) {
     if (e) e.preventDefault();
     const user = Object.assign({}, this.state);
-    console.log(user);
     this.props.resetErrors();
     this.props.processForm(user)
       .then(() => {
@@ -312,7 +311,6 @@ export class SessionForm extends React.Component {
     let dobYearFocus = 'regularFocus';
 
     let errors = this.props.errors.session;
-    console.log(errors);
     let errorsDiv = null;
     if (errors && errors.length > 0) {
 
