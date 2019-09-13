@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import VideoComponent from './VideoComponent';
-import { getUserByName } from '../../actions/session_actions';
+import { ChannelComponent } from './ChannelComponent';
 
 const msp = (state, ownProps) => {
-
   return {
-    // currentUser: state.users[state.session.id],
-    users: state.entities.users
+    currentUser: state.entities.users[state.session.id],
   }
 }
 
@@ -18,4 +15,4 @@ const mdp = (dispatch) => {
   }
 }
 
-export default withRouter(connect(msp, mdp)(VideoComponent));
+export default withRouter(connect(msp, mdp)(ChannelComponent));

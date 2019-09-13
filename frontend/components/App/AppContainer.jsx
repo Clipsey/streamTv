@@ -1,21 +1,19 @@
 import { AppComponent } from './AppComponent';
 import { connect } from 'react-redux';
 import React from 'react';
+import { toggleUserDrop } from '../../actions/ui_actions';
+
 
 const msp = (state, ownProps) => {
-  let streamKey = null;
-  if (state.session.id != null) {
-    streamKey = state.entities.users[state.session.id]['stream_key'];
-  }
   return {
     currentUser: state.entities.users[state.session.id],
     modalStatus: state.ui.modal,
-    streamKey
+    userDropDownStatus: state.ui.userDropDown.status
   }
 }
 const mdp = (dispatch) => {
   return {
-
+    toggleUserDrop: (status) => dispatch(toggleUserDrop(status))
   }
 }
 

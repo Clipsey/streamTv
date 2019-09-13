@@ -7,7 +7,7 @@
 //   .addSourceBuffer('video/mp4; codecs="avc1.64001e"')
 import Hls from 'hls.js';
 
-const startup = (currentUser, streamKey) => {
+const startup = (user, streamKey) => {
   // if (currentUser == undefined) return;
 
   let attemptNum = 0;

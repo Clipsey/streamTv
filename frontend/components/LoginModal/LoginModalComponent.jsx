@@ -62,7 +62,7 @@ class LoginModalComponent extends React.Component {
     const leftContainer = (window.innerWidth - 430)/2;
     
     const overlay = {
-      backgroundColor: 'rgba(52, 52, 52, 0.8)',
+      background: 'rgba(10, 10, 10, 0.6)',
       width: '100%',
       height: '100%',
       position: 'absolute',
@@ -82,7 +82,7 @@ class LoginModalComponent extends React.Component {
 
     const formBox = {
       backgroundColor: '#232127',
-      zIndex: '2',
+      zIndex: '99',
       width: '380px',
       height: '420px',
       padding: '30px 20px',

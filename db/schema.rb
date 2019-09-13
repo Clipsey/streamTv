@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_234126) do
+ActiveRecord::Schema.define(version: 2019_09_13_164052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_234126) do
     t.string "stream_key"
     t.string "email"
     t.date "dob"
+    t.index ["username"], name: "index_users_on_username"
   end
 
 end

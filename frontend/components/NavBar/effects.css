@@ -1,0 +1,7 @@
+.regularFocus {
+  border: solid 1px #392e5c;
+}
+.regularFocus:focus {
+  box-shadow: 0px 0px 6px -2px #7d5bbe;
+  border-color: #7d5bbe;
+}

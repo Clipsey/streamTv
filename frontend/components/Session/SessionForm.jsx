@@ -323,6 +323,10 @@ export class SessionForm extends React.Component {
         passwordClass = 'redFocus';
       } else if (errors.includes('Email')) {
         emailClass = 'redFocus';
+      } else if (errors.includes('birthday')) {
+        dobDayFocus = 'redFocus'
+        dobMonthFocus = 'redFocus'
+        dobYearFocus = 'redFocus'
       }
     }
 
