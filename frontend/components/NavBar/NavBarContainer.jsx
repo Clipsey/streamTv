@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { toggleLoginModal, toggleUserDrop } from '../../actions/ui_actions';
-import { logout } from '../../actions/session_actions';
+import { logout } from '../../actions/user_actions';
 
 import NavBarComponent from './NavBarComponent';
 

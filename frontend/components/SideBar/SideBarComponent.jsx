@@ -14,7 +14,10 @@ export class SideBarComponent extends React.Component {
       float: 'left',
       borderRight: 'solid 1px #252328',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      position: 'fixed',
+      top: '49px',
+      left: '0px'
     }
     const section = {
       width: '100%',

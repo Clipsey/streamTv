@@ -1,0 +1,9 @@
+.followHover {
+  border-bottom: solid 4px rgb(100, 65, 164, 0.0);
+  transition: border-bottom .2s;
+}
+.followHover:hover {
+  border-bottom: solid 4px rgb(100, 65, 164, 0.5);
+  border-radius: 1px;
+  cursor: pointer;
+}

@@ -2,7 +2,7 @@ import { UserDropDownComponent } from './UserDropDownComponent';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { toggleUserDrop } from '../../actions/ui_actions';
-import { logout } from '../../actions/session_actions';
+import { logout } from '../../actions/user_actions';
 
 const msp = (state, ownProps) => {
   return {

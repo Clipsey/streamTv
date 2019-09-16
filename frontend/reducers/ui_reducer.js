@@ -1,7 +1,7 @@
 import {TOGGLE_LOGIN_MODAL, TOGGLE_USER_DROPDOWN} from '../actions/ui_actions';
 
 const defaultState = {
-  modal: true,
+  modal: false,
   formType: 'login',
   userDropDown: {
     status: false

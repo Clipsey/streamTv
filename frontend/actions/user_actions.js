@@ -1,4 +1,4 @@
-import { postUser, postSession, deleteSession, clearAllErrors, fetchUserByName } from '../utils/session_utils';
+import { postUser, postSession, deleteSession, clearAllErrors, fetchUserByName } from '../utils/utils';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';

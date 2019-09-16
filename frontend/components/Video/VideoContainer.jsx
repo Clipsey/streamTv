@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import VideoComponent from './VideoComponent';
-import { getUserByName } from '../../actions/session_actions';
+import { getUserByName } from '../../actions/user_actions';
 
 const msp = (state, ownProps) => {
 

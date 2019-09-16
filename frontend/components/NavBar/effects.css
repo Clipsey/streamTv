@@ -5,3 +5,15 @@
   box-shadow: 0px 0px 6px -2px #7d5bbe;
   border-color: #7d5bbe;
 }
+
+.buttonClass {
+  cursor: pointer;
+}
+
+#followButton {
+  background-color: #6441a4
+}
+
+#followButton:hover {
+  background-color: #7d5bbe
+}

@@ -26,9 +26,33 @@ export const postSession = (user) => {
   })
 }
 
-export const deleteSession = (user) => {
+export const deleteSession = () => {
   return $.ajax({
     url: '/api/session',
     method: 'DELETE'
   });
 };
+
+export const postFollow = (follow) => {
+  return $.ajax({
+    url: '/api/follows',
+    method: 'POST',
+    data: { follow }
+  })
+}
+
+export const showFollow = (user) => {
+  return $.ajax({
+    url: '/api/follows',
+    method: 'SHOW',
+    data: { user }
+  })
+}
+
+export const deleteFollow = (follow) => {
+  return $.ajax({
+    url: '/api/follows',
+    method: 'POST',
+    data: { follow }
+  })
+}

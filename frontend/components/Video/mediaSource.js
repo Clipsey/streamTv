@@ -7,8 +7,8 @@
 //   .addSourceBuffer('video/mp4; codecs="avc1.64001e"')
 import Hls from 'hls.js';
 
-const startup = (user, streamKey) => {
-  // if (currentUser == undefined) return;
+const startup = (user, streamKey, cb) => {
+
 
   let attemptNum = 0;
   let timeout = null;
@@ -26,13 +26,11 @@ const startup = (user, streamKey) => {
       hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
         if (videoTag != undefined) {
           videoTag.play();
+          cb(true);
         }
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
-        ++attemptNum;
-        if(attemptNum <= 10) {
-          timeout = setTimeout(attempt, 1000);
-        }
+        cb(false);
       });
 
       attempt();

@@ -1,14 +1,6 @@
 import React from 'react';
 import './effects.css'
 
-
-// default : #6441a4
-// light: #7d5bbe
-
-//two divs
-// flex-start on left,
-// flex-end on right
-
 export class NavBarComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -59,7 +51,7 @@ export class NavBarComponent extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.resize)
+    window.addEventListener('resize', this.resize);
   }
 
   componentWillUnmount() {
@@ -77,7 +69,9 @@ export class NavBarComponent extends React.Component {
       height: '50px',
       display: 'flex',
       justifyContent: 'space-between',
-      position: "fixed"
+      position: 'fixed',
+      top: '0',
+      left: '0'
     }
     const leftBarStyle = {
       display: 'flex',
@@ -129,8 +123,9 @@ export class NavBarComponent extends React.Component {
       paddingLeft: '30px',
       paddingTop: '3px',
       paddingBottom: '3px',
-      margin: 'auto',
-      marginLeft: '50px',
+      // margin: 'auto',
+      // marginLeft: '50px',
+      marginTop: '10px',
       fontSize: '12px',
       height: '22px',
       width: '33%',
@@ -153,7 +148,6 @@ export class NavBarComponent extends React.Component {
 
     let DiscoverStyle = Object.assign({}, visualBoxLeft);
     let BrowseStyle = Object.assign({}, visualBoxLeft);
-    console.log(this.props.location.pathname);
     if (this.props.location.pathname === '/') {
       DiscoverStyle['color'] = 'white';
       DiscoverStyle['borderBottom'] = 'solid 1.5px white';
@@ -172,9 +166,9 @@ export class NavBarComponent extends React.Component {
       <div style={navBarStyle}>
         
         <section style={leftBarStyle}>
-          <div onClick={this.routeChange('')} style={twitchIconNav}>Icon</div>
-          <div onClick={this.routeChange('')} style={DiscoverStyle}>Discover</div>
-          <div onClick={this.routeChange('directory')} style={BrowseStyle}>Browse</div>
+          <div onClick={this.routeChange('')} className='buttonClass' style={twitchIconNav}>Icon</div>
+          <div onClick={this.routeChange('')} className='buttonClass' style={DiscoverStyle}>Discover</div>
+          <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div>
         </section>
         
         {/* Change text color to white in change handler */}
@@ -185,19 +179,18 @@ export class NavBarComponent extends React.Component {
             placeholder="Search"
             className={searchClass} />
         }
-        {showSearchBar && 
+        {/* {showSearchBar && 
           <div style={searchIcon}> </div>
-        }
+        } */}
 
         <section style={rightBarStyle}>
           { !showSearchBar && 
             <div style={visualBoxRight}>Search</div>
           }
-          <div style={visualBoxRight}>Crown</div>
-          { !this.props.currentUser && <div style={visualBoxRight} onClick={this.toggleModal('login')}>Log In</div> }
-          { !this.props.currentUser && <div style={visualBoxRight} onClick={this.toggleModal('signup')}>Sign Up</div> }
-          { this.props.currentUser && <div style={visualBoxRight} onClick={this.logoutCheck}>Sign Out</div> } 
-          { this.props.currentUser && <div style={visualBoxRight} onClick={this.toggleUserDrop}>User</div> }
+          {!this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleModal('login')}>Log In</div> }
+          {!this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleModal('signup')}>Sign Up</div> }
+          {this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.logoutCheck}>Sign Out</div> } 
+          {this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleUserDrop}>User</div> }
           
           {/* <div style={visualBoxRight} onClick={this.logoutCheck}>
             {this.props.currentUser ? "Sign Out" : "User"}

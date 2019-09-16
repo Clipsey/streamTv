@@ -1,7 +1,7 @@
 import { GreetingComponent } from './GreetingComponent';
 import { connect } from 'react-redux';
 
-import {createNewUser, login, logout} from '../../actions/session_actions';
+import {createNewUser, login, logout} from '../../actions/user_actions';
 
 
 const mapStateToProps = ({ entities, session }) => ({

@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 // import { LoginFormContainer } from '../Session/LoginFormContainer';
 // import { SignupFormContainer } from '../Session/SignupFormContainer';
-import { createNewUser, login, logout } from '../../actions/session_actions';
+import { createNewUser, login, logout } from '../../actions/user_actions';
 import { AuthRoute } from '../util/route_util';
 
 import LoginModalContainer from '../LoginModal/LoginModalContainer';
@@ -26,31 +26,27 @@ export class AppComponent extends React.Component {
   }
 
   render() {
-
-    const emptyBar = {
-      width: '100%',
-      height: '50px',
-    }
     const base = {
       color: 'rgb(218, 216, 222)',
       position: 'absolute',
       height: '100%',
-      width: '100%'
+      width: '100%',
+      backgroundColor: "#0f0e11",
+      fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
     }
     const MainDiv = {
       width: '100%',
       height: '100%',
-      backgroundColor: "#0f0e11",
-      display: 'relative'
+      display: 'relative',
+      overflow: 'scroll'
     }
 
     return (
-      <div style={base} onClick={this.toggleUserDrop}> 
+      <div style={base} onClick={this.toggleUserDrop} id="base"> 
         {this.props.modalStatus         && <LoginModalContainer /> }
         {this.props.userDropDownStatus  && <UserDropDownContainer />}
         <NavBarContainer />
-        <div style={emptyBar}></div>
-        <div style={MainDiv}>
+        <div style={MainDiv} id="mainAppComp">
           <SideBarContainer />
           <MainBarContainer />
         </div>
