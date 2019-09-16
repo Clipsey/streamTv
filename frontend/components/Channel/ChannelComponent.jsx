@@ -138,7 +138,7 @@ export class ChannelComponent extends React.Component {
             </div>
           </div>
         </div>
-        <div id="followButton" style={followButton} class='buttonClass'>
+        <div id="followButton" style={followButton} className='buttonClass'>
           <div style={heartIcon}></div>
           <div style={FollowText}>Follow</div>
         </div>
