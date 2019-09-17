@@ -20,7 +20,6 @@ export class ChannelComponent extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log("here1");
     if (nextProps.match.params.username !== this.props.match.params.username) {
       this.props.getUserByName(nextProps.match.params.username).then((action) => {
         this.user = null;
@@ -29,7 +28,6 @@ export class ChannelComponent extends React.Component {
           const user = this.props.users[user_key];
           if (this.props.match.params.username === user.username) {
             this.user = user;
-            console.log(this.user);
             break;
           }
         }
@@ -37,14 +35,12 @@ export class ChannelComponent extends React.Component {
         this.sendObj.follow = 'followee';
         this.props.showFollows(this.sendObj);
       }).fail(() => {
-        console.log(this.props);
         this.props.history.push(`/`);
       });
     }
   }
 
   componentDidMount() {
-    console.log('here2');
     this.props.getUserByName(this.props.match.params.username).then((action) => {
       this.user = null;
       const user_keys = Object.keys(this.props.users);
@@ -52,7 +48,6 @@ export class ChannelComponent extends React.Component {
         const user = this.props.users[user_key];
         if (this.props.match.params.username === user.username) {
           this.user = user;
-          console.log(this.user);
           break;
         }
       }
@@ -60,7 +55,6 @@ export class ChannelComponent extends React.Component {
       this.sendObj.follow = 'followee';
       this.props.showFollows(this.sendObj);
     }).fail(() => {
-      console.log(this.props);
       this.props.history.push(`/`);
     });
   }

@@ -65,8 +65,6 @@ export class SideBarComponent extends React.Component {
         return <div style={regularIcon} key={username} onClick={this.handleFollowClick(username)}> </div>
       })
     }
-    console.log(this.props.currentUserFollows);
-    console.log(followings);
 
     return (
       <div style={sideBarContainer}>
