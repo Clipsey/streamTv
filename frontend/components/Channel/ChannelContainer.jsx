@@ -12,7 +12,7 @@ const msp = (state, ownProps) => {
     currentUser: state.entities.users[state.session.id],
     users: state.entities.users,
     modalStatus: state.ui.modal,
-    follows: state.follows
+    follows: state.follows,
   }
 }
 

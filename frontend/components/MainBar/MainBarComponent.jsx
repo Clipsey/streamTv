@@ -15,7 +15,7 @@ export class MainBarComponent extends React.Component {
     const mainStyle = {
       float: 'left',
       width: `${mainWidth}px`,
-      // width: '100%',
+      width: '100vw',
       height: '100%',
       position: 'fixed',
       top: '49px',
@@ -26,7 +26,10 @@ export class MainBarComponent extends React.Component {
       borderLeft: 'solid 1px #252328'
     }
     const mainContainer = {
-      padding: '20px',
+      paddingLeft: '20px',
+      paddingTop: '20px',
+      paddingRight: '69px',
+      boxSizing: 'border-box'
     }
 
     return (

@@ -58,14 +58,16 @@ class Video extends React.Component {
       width: '100%',
       maxHeight: `${maxHeight}px`,
       backgroundImage: this.background,
+      boxSizing: 'border-box'
     }
     
     const videoStyle = {
-      width: '100vw',
+      width: '100%',
       // autoPlay: 'true',
       // height: '100%',
       maxHeight: `${maxHeight}px`,
       muted: 'true',
+      boxSizing: 'border-box'
     }
 
     const streamInfoContainer = {

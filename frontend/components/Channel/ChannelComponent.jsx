@@ -22,15 +22,8 @@ export class ChannelComponent extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.username !== this.props.match.params.username) {
       this.props.getUserByName(nextProps.match.params.username).then((action) => {
-        this.user = null;
-        const user_keys = Object.keys(this.props.users);
-        for (const user_key of user_keys) {
-          const user = this.props.users[user_key];
-          if (this.props.match.params.username === user.username) {
-            this.user = user;
-            break;
-          }
-        }
+
+        this.user = action.user;
         this.sendObj = Object.assign({}, this.user);
         this.sendObj.follow = 'followee';
         this.props.showFollows(this.sendObj);
@@ -42,15 +35,7 @@ export class ChannelComponent extends React.Component {
 
   componentDidMount() {
     this.props.getUserByName(this.props.match.params.username).then((action) => {
-      this.user = null;
-      const user_keys = Object.keys(this.props.users);
-      for (const user_key of user_keys) {
-        const user = this.props.users[user_key];
-        if (this.props.match.params.username === user.username) {
-          this.user = user;
-          break;
-        }
-      }
+      this.user = action.user;
       this.sendObj = Object.assign({}, this.user);
       this.sendObj.follow = 'followee';
       this.props.showFollows(this.sendObj);
@@ -88,7 +73,7 @@ export class ChannelComponent extends React.Component {
 
     const topBarStyle = {
       height: '37px',
-      width: '100%',
+      width: '100vw',
       backgroundColor: '#19171c',
       borderBottom: 'solid 1px #252328',
       // borderLeft: 'solid 1px #252328',
@@ -160,7 +145,7 @@ export class ChannelComponent extends React.Component {
       height: '30px',
       padding: '5px 10px',
       borderRadius: '5px',
-      marginRight: '30px',
+      marginRight: '100px',
       boxSizing: 'border-box',
       marginTop: '3px'
     }

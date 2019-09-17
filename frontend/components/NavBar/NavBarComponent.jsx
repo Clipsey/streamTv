@@ -68,7 +68,7 @@ export class NavBarComponent extends React.Component {
       marginTop: '0px',
       marginLeft: '0px',
       backgroundColor: '#4b367c',
-      width: '100%',
+      width: '100vw',
       height: '50px',
       display: 'flex',
       justifyContent: 'space-between',

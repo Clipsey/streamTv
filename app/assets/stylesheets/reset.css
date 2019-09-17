@@ -29,6 +29,10 @@ time, mark, audio, video {
     outline: 0;
 }
 
+#main {
+    width: 100vw;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {

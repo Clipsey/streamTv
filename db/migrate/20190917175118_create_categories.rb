@@ -3,7 +3,7 @@ class CreateCategories < ActiveRecord::Migration[5.2]
     create_table :categories do |t|
       t.string :title
       t.integer :viewers
-      t.timestamps 
+      t.timestamps
     end
   end
 end
