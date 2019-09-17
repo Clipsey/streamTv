@@ -11,7 +11,7 @@ export class SideBarComponent extends React.Component {
       // if (this.props.location.pathname === `/${destination}`) return;
       if (this.props.location.pathname === `/users/${this.props.match.params.username}/${followee_name}`)
         return;
-      this.props.history.push(`/users/${this.props.match.params.username}/${followee_name}`);
+      this.props.history.push(`/users/${followee_name}`);
     }
   }
 
@@ -33,7 +33,7 @@ export class SideBarComponent extends React.Component {
       left: '0px'
     }
 
-    const noUsersSection = {
+    const UsersSection = {
       display: 'flex',
       flexDirection: 'column',
     }
@@ -56,7 +56,7 @@ export class SideBarComponent extends React.Component {
       border: 'solid 1px grey',
       width: '25px',
       height: '25px',
-      margin: '12px',
+      margin: '12px 12px',
     }
 
     let followings = [];
@@ -70,22 +70,22 @@ export class SideBarComponent extends React.Component {
 
     return (
       <div style={sideBarContainer}>
-        { this.props.currentUser &&
-          followings
-        }
-        { (!this.props.currentUser || followings.length < 1) &&
-          <div style={noUsersSection}>
-            <div style={section}>
-              <div style={recommendedIcon}></div>
+        <div style={UsersSection}>
+          { (this.props.currentUser && followings.length >= 1) && followings }
+          { (!this.props.currentUser || followings.length < 1) &&
+            <div style={UsersSection}>
+              <div style={section}>
+                <div style={recommendedIcon}></div>
+              </div>
+              <div style={regularIcon}></div>
+              <div style={regularIcon}></div>
+              <div style={regularIcon}></div>
+              <div style={regularIcon}></div>
+              <div style={regularIcon}></div>
+              <div style={regularIcon}></div>
             </div>
-            <div style={regularIcon}></div>
-            <div style={regularIcon}></div>
-            <div style={regularIcon}></div>
-            <div style={regularIcon}></div>
-            <div style={regularIcon}></div>
-            <div style={regularIcon}></div>
-          </div>
-        }
+          }
+        </div>
       </div>
     )
   }

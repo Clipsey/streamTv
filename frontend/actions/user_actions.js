@@ -3,6 +3,7 @@ import { postUser, postSession, deleteSession, clearAllErrors, fetchUserByName, 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+export const RECEIVE_NO_USER_ERRORS = 'RECEIVE_NO_USER_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_USER = 'RECEIVE_USER';
 
@@ -28,6 +29,10 @@ const receiveUser = (user) => ({
   type: RECEIVE_USER,
   user
 });
+const receiveNoUserErrors = errorData => ({
+  type: RECEIVE_NO_USER_ERRORS,
+  errorData
+})
 
 export const createNewUser = formUser => dispatch => {
   return postUser(formUser)
@@ -48,12 +53,12 @@ export const logout = () => dispatch =>
 export const getUserByName = (username) => dispatch => 
   fetchUserByName(username)
   .then((user) => dispatch(receiveUser(user)))
-  .fail(data => dispatch(receiveErrors(data)));
+  .fail(data => dispatch(receiveNoUserErrors(data)));
 
 export const getUserById = (id) => dispatch => 
   fetchUserById(id)
-    .then((user) => dispatch(receiveUser(user)))
-    .fail(data => dispatch(receiveErrors(data)));
+  .then((user) => dispatch(receiveUser(user)))
+  .fail(data => dispatch(receiveNoUserErrors(data)));
 
 export const resetErrors = () => dispatch => 
   dispatch(clearErrors())

@@ -20,28 +20,31 @@ export class ChannelComponent extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-    // if(this.props.users)
+    console.log("here1");
     if (nextProps.match.params.username !== this.props.match.params.username) {
-      this.props.getUserByName(this.props.match.params.username).then((action) => {
+      this.props.getUserByName(nextProps.match.params.username).then((action) => {
         this.user = null;
         const user_keys = Object.keys(this.props.users);
         for (const user_key of user_keys) {
           const user = this.props.users[user_key];
           if (this.props.match.params.username === user.username) {
             this.user = user;
+            console.log(this.user);
             break;
           }
         }
         this.sendObj = Object.assign({}, this.user);
         this.sendObj.follow = 'followee';
         this.props.showFollows(this.sendObj);
+      }).fail(() => {
+        console.log(this.props);
+        this.props.history.push(`/`);
       });
     }
   }
 
   componentDidMount() {
-    // if ()
+    console.log('here2');
     this.props.getUserByName(this.props.match.params.username).then((action) => {
       this.user = null;
       const user_keys = Object.keys(this.props.users);
@@ -49,12 +52,16 @@ export class ChannelComponent extends React.Component {
         const user = this.props.users[user_key];
         if (this.props.match.params.username === user.username) {
           this.user = user;
+          console.log(this.user);
           break;
         }
       }
       this.sendObj = Object.assign({}, this.user);
       this.sendObj.follow = 'followee';
       this.props.showFollows(this.sendObj);
+    }).fail(() => {
+      console.log(this.props);
+      this.props.history.push(`/`);
     });
   }
 
@@ -69,9 +76,11 @@ export class ChannelComponent extends React.Component {
     if (this.props.currentUser 
         && !this.props.follows.currentChannel[this.props.currentUser.id]) {
 
+      const followee_id = this.user.id;
+      const follower_id = this.props.currentUser.id;
       this.props.createFollow({
-        followee_id: this.user.id,
-        follower_id: this.props.currentUser.id
+        followee_id,
+        follower_id
       })
     } else if (this.props.currentUser
                && this.props.follows.currentChannel[this.props.currentUser.id]) {
@@ -181,7 +190,7 @@ export class ChannelComponent extends React.Component {
     let followButtonId = "followButton";
 
     let displayFollowButtonText = true;
-    if (this.props.follows.currentChannel[this.props.currentUser.id]) {
+    if (this.props.currentUser && this.props.follows.currentChannel[this.props.currentUser.id]) {
       displayFollowButtonText = false;
       followButtonId = "followButtonSmall"
       followButton['width'] = '43px';

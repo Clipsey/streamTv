@@ -37,7 +37,6 @@ class Api::UsersController < ApplicationController
 
   def show
     if (params[:id_get]) 
-      debugger
       @user = User.find_by(id: params[:id])
       if @user
         render :show
