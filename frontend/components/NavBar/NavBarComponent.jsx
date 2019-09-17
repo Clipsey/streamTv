@@ -38,7 +38,10 @@ export class NavBarComponent extends React.Component {
   }
 
   logoutCheck() {
-    if(this.props.currentUser) this.props.logout();
+    if(this.props.currentUser) {
+      this.props.logout();
+      this.props.clearHalfFollows('logout');
+    };
   }
 
   toggleUserDrop() {

@@ -88,12 +88,12 @@ class Video extends React.Component {
     }
 
     const streamInfoTitle = {
-      fontSize: '15px', 
+      fontSize: '16px', 
       marginBottom: '15px'
     }
     const streamInfoCategory = {
       marginBottom: '15px',
-      fontSize: '13px'
+      fontSize: '14px'
     }
     const streamInfoTagsAndViewsContainer = {
       display: 'flex',
@@ -136,7 +136,8 @@ class Video extends React.Component {
       padding: '4px',
       borderRadius: '4px',
       fontSize: '10px',
-      marginRight: '5px'
+      marginRight: '5px',
+      // marginBottom: '4px'
     }
 
 

@@ -7,3 +7,19 @@
   border-radius: 1px;
   cursor: pointer;
 }
+
+#followButton {
+  background-color: #6441a4
+}
+
+#followButton:hover {
+  background-color: #7d5bbe
+}
+
+#followButtonSmall {
+  background-color: #322f37;
+}
+
+#followButtonSmall:hover {
+  background-color: #bd0f0f;
+}

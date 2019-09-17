@@ -35,14 +35,22 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def show 
-    # debugger
-    @user = User.find_by(username: params[:id])
-    if @user
-      render :show
+  def show
+    if (params[:id_get]) 
+      debugger
+      @user = User.find_by(id: params[:id])
+      if @user
+        render :show
+      else
+        render json: { errors: "No User Found" }, status: 422
+      end
     else
-      render json: { errors: @user }, status: 422
-      render json: { errors: "No User Found" }, status: 422
+      @user = User.find_by(username: params[:id])
+      if @user
+        render :show
+      else
+        render json: { errors: "No User Found" }, status: 422
+      end
     end
   end
 

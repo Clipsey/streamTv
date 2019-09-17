@@ -5,6 +5,9 @@ export class ChannelComponent extends React.Component {
   constructor (props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.followClick = this.followClick.bind(this);
+    this.user = {};
   }
 
   handleClick(destination) {
@@ -16,8 +19,66 @@ export class ChannelComponent extends React.Component {
     }
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    // console.log(nextProps);
+    // if(this.props.users)
+    if (nextProps.match.params.username !== this.props.match.params.username) {
+      this.props.getUserByName(this.props.match.params.username).then((action) => {
+        this.user = null;
+        const user_keys = Object.keys(this.props.users);
+        for (const user_key of user_keys) {
+          const user = this.props.users[user_key];
+          if (this.props.match.params.username === user.username) {
+            this.user = user;
+            break;
+          }
+        }
+        this.sendObj = Object.assign({}, this.user);
+        this.sendObj.follow = 'followee';
+        this.props.showFollows(this.sendObj);
+      });
+    }
+  }
+
+  componentDidMount() {
+    // if ()
+    this.props.getUserByName(this.props.match.params.username).then((action) => {
+      this.user = null;
+      const user_keys = Object.keys(this.props.users);
+      for (const user_key of user_keys) {
+        const user = this.props.users[user_key];
+        if (this.props.match.params.username === user.username) {
+          this.user = user;
+          break;
+        }
+      }
+      this.sendObj = Object.assign({}, this.user);
+      this.sendObj.follow = 'followee';
+      this.props.showFollows(this.sendObj);
+    });
+  }
+
+  toggleModal(formType) {
+    return () => {
+      this.props.loginModal(!this.props.modalStatus, formType);
+    }
+  }
+
   followClick(e) {
     // clickAction if current_user else login modal
+    if (this.props.currentUser 
+        && !this.props.follows.currentChannel[this.props.currentUser.id]) {
+
+      this.props.createFollow({
+        followee_id: this.user.id,
+        follower_id: this.props.currentUser.id
+      })
+    } else if (this.props.currentUser
+               && this.props.follows.currentChannel[this.props.currentUser.id]) {
+      //Delete Follow
+    } else {
+      this.toggleModal('login')();
+    }
   }
 
   render() {
@@ -108,13 +169,24 @@ export class ChannelComponent extends React.Component {
       border: 'solid 1px white',
       marginTop: '2px',
       marginRight: '6px',
-      marginLeft: '2px'
+      marginLeft: '2px',
     }
     const FollowText = {
       fontSize: '11px',
       fontWeight: '500',
       color: 'white',
       lineHeight: '20px'
+    }
+
+    let followButtonId = "followButton";
+
+    let displayFollowButtonText = true;
+    if (this.props.follows.currentChannel[this.props.currentUser.id]) {
+      displayFollowButtonText = false;
+      followButtonId = "followButtonSmall"
+      followButton['width'] = '43px';
+      heartIcon['marginLeft'] = '3px';
+      // followButton[]
     }
     
     return (
@@ -138,9 +210,9 @@ export class ChannelComponent extends React.Component {
             </div>
           </div>
         </div>
-        <div id="followButton" style={followButton} className='buttonClass'>
+        <div id={followButtonId} style={followButton} className='buttonClass' onClick={this.followClick}>
           <div style={heartIcon}></div>
-          <div style={FollowText}>Follow</div>
+          {displayFollowButtonText && <div style={FollowText}>Follow</div> }
         </div>
       </div>
     )

@@ -1,4 +1,4 @@
-import { postUser, postSession, deleteSession, clearAllErrors, fetchUserByName } from '../utils/utils';
+import { postUser, postSession, deleteSession, clearAllErrors, fetchUserByName, fetchUserById } from '../utils/utils';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
@@ -49,6 +49,11 @@ export const getUserByName = (username) => dispatch =>
   fetchUserByName(username)
   .then((user) => dispatch(receiveUser(user)))
   .fail(data => dispatch(receiveErrors(data)));
+
+export const getUserById = (id) => dispatch => 
+  fetchUserById(id)
+    .then((user) => dispatch(receiveUser(user)))
+    .fail(data => dispatch(receiveErrors(data)));
 
 export const resetErrors = () => dispatch => 
   dispatch(clearErrors())

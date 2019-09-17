@@ -32,7 +32,8 @@ export class AppComponent extends React.Component {
       height: '100%',
       width: '100%',
       backgroundColor: "#0f0e11",
-      fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
+      fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+      position: '33px'
     }
     const MainDiv = {
       width: '100%',

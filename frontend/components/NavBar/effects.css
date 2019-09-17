@@ -9,11 +9,3 @@
 .buttonClass {
   cursor: pointer;
 }
-
-#followButton {
-  background-color: #6441a4
-}
-
-#followButton:hover {
-  background-color: #7d5bbe
-}

@@ -18,6 +18,14 @@ export const fetchUserByName = (username) => {
   })
 }
 
+export const fetchUserById = (id) => {
+  return $.ajax({
+    url: `/api/users/${id}`,
+    method: 'GET',
+    data: { id_get: true }
+  })
+}
+
 export const postSession = (user) => {
   return $.ajax({
     url: '/api/session',
@@ -41,18 +49,17 @@ export const postFollow = (follow) => {
   })
 }
 
-export const showFollow = (user) => {
+export const getFollows = (user) => {
   return $.ajax({
-    url: '/api/follows',
-    method: 'SHOW',
+    url: `/api/follows/${user.id}`,
+    method: 'GET',
     data: { user }
   })
 }
 
 export const deleteFollow = (follow) => {
-  return $.ajax({
-    url: '/api/follows',
-    method: 'POST',
-    data: { follow }
-  })
+  // return $.ajax({
+  //   url: '/api/follows/',
+  //   method: 'DELETE',
+  // })
 }

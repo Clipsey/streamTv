@@ -3,10 +3,12 @@ import sessionReducer from './session_reducer';
 import errorsReducer from './errors_reducer';
 import entitiesReducer from './entities_reducer';
 import uiReducer from './ui_reducer';
+import followsReducer from './follows_reducer';
 
 export default combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
   entities: entitiesReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  follows: followsReducer
 });

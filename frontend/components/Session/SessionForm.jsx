@@ -57,8 +57,13 @@ export class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.resetErrors();
     this.props.processForm(user)
-      .then(() => {
+      .then((action) => {
         this.props.loginModal(false, 'login');
+        if (this.props.formType !== 'signup') {
+          this.sendObj = Object.assign({}, action.user);
+          this.sendObj.follow = 'follower';
+          this.props.showFollows(this.sendObj);
+        }
       })
       .fail(() => {
         // console.log(this.props.errors);
