@@ -8,6 +8,7 @@ class Video extends React.Component {
     this.streamKey = null;
     this.retry = this.retry.bind(this);
     this.background = 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)';
+    this.maxSize = '100%';
   }
 
   retry(force) {
@@ -39,12 +40,12 @@ class Video extends React.Component {
   }
 
   componentDidMount() {
-    this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 3}px`;
+    this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 2}px`;
     this.retry(true);
   }
   
   componentDidUpdate() {
-    this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 3}px`;
+    this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 2}px`;
     this.retry(false);
   }
 
@@ -65,7 +66,7 @@ class Video extends React.Component {
       width: '100%',
       // autoPlay: 'true',
       // height: '100%',
-      maxHeight: `${maxHeight}px`,
+      maxHeight: `${this.maxSize}`,
       muted: 'true',
       boxSizing: 'border-box'
     }
