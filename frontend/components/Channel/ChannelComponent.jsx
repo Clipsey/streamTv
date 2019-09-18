@@ -22,11 +22,10 @@ export class ChannelComponent extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.username !== this.props.match.params.username) {
       this.props.getUserByName(nextProps.match.params.username).then((action) => {
-
-        this.user = action.user;
-        this.sendObj = Object.assign({}, this.user);
+        this.sendObj = Object.assign({}, action.user);
         this.sendObj.follow = 'followee';
         this.props.showFollows(this.sendObj);
+        this.props.receiveChannel(action.user.id)
       }).fail(() => {
         this.props.history.push(`/`);
       });
@@ -35,10 +34,10 @@ export class ChannelComponent extends React.Component {
 
   componentDidMount() {
     this.props.getUserByName(this.props.match.params.username).then((action) => {
-      this.user = action.user;
-      this.sendObj = Object.assign({}, this.user);
+      this.sendObj = Object.assign({}, action.user);
       this.sendObj.follow = 'followee';
       this.props.showFollows(this.sendObj);
+      this.props.receiveChannel(action.user.id)
     }).fail(() => {
       this.props.history.push(`/`);
     });
@@ -52,11 +51,17 @@ export class ChannelComponent extends React.Component {
 
   followClick(e) {
     // clickAction if current_user else login modal
+    let followee_id = null;
+    let follower_id = null;
+    if (this.props.currentUser) {
+      followee_id = this.props.channelUser.id;
+      follower_id = this.props.currentUser.id;
+    }
+    if (followee_id === follower_id && followee_id && follower_id) {
+      return;
+    }
     if (this.props.currentUser 
         && !this.props.follows.currentChannel[this.props.currentUser.id]) {
-
-      const followee_id = this.user.id;
-      const follower_id = this.props.currentUser.id;
       this.props.createFollow({
         followee_id,
         follower_id
@@ -64,6 +69,11 @@ export class ChannelComponent extends React.Component {
     } else if (this.props.currentUser
                && this.props.follows.currentChannel[this.props.currentUser.id]) {
       //Delete Follow
+      console.log('delete');
+      this.props.destroyFollow({
+        followee_id,
+        follower_id
+      })
     } else {
       this.toggleModal('login')();
     }
@@ -108,7 +118,9 @@ export class ChannelComponent extends React.Component {
       height: '33px',
       width: '33px',
       marginLeft: '2px',
-      border: 'solid 1px grey'
+      marginTop: '2px',
+      // border: 'solid 1px grey',
+      overflow: 'hidden'
     }
     const usernameElement = {
       color: "#dad8de",
@@ -149,21 +161,36 @@ export class ChannelComponent extends React.Component {
       boxSizing: 'border-box',
       marginTop: '3px'
     }
-    const heartIcon = {
-      borderRadius: '20px',
-      height: '14px',
-      width: '14px',
+    const heartIconContainer = {
+      // borderRadius: '20px',
+      height: '18px',
+      width: '18px',
       float: 'left',
-      border: 'solid 1px white',
-      marginTop: '2px',
+      marginTop: '1px',
       marginRight: '6px',
       marginLeft: '2px',
+    }
+    const heartIcon = {
+      display: 'inline',
+      margin: '0 auto',
+      // marginLeft: '-25%',
+      height: '100%',
+      width: 'auto',
     }
     const FollowText = {
       fontSize: '11px',
       fontWeight: '500',
       color: 'white',
       lineHeight: '20px'
+    }
+
+    const profilePictureStyle = {
+      display: 'inline',
+      margin: '0 auto',
+      // marginLeft: '-25%',
+      height: '100%',
+      width: 'auto',
+      marginBottom: '10px'
     }
 
     let followButtonId = "followButton";
@@ -173,35 +200,52 @@ export class ChannelComponent extends React.Component {
       displayFollowButtonText = false;
       followButtonId = "followButtonSmall"
       followButton['width'] = '43px';
-      heartIcon['marginLeft'] = '3px';
+      heartIcon['marginLeft'] = '0px';
       // followButton[]
     }
+    let displayPicture = false;
+    if (this.props.channelUser && this.props.channelUser.picture) {
+      displayPicture = true;
+      imageElement['border'] = "";
+    }
     
+
+    // console.log(this.props.currentUser);
+
     return (
       <div style={topBarStyle}>
         <div>
           <div style={listContainer}>
             <div onClick={this.handleClick('')} style={userContainer}>
-              <div style={imageContainer}>
-                <div style={imageElement}></div>
-              </div>
+              {(this.props.channelUser) &&
+                <div style={imageElement}>
+                  {this.props.channelUser.picture && <img style={profilePictureStyle} src={this.props.channelUser.picture}></img>}
+                  {!this.props.channelUser.picture && <svg id="svgProfileChannel" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z" /></svg>}
+                </div>
+              }
             </div>
             <div onClick={this.handleClick('')} style={usernameElement}>{this.props.match.params.username}</div>
   
             <div onClick={this.handleClick('followers')} className="followHover" style={followerElement}>
               <div style={followText}>Followers</div>
-              <div style={numberText}>4</div>
+              <div style={numberText}>{this.props.channelFollowers.length || 0}</div>
             </div>
             <div onClick={this.handleClick('following')} className="followHover" style={followingElement}>
               <div style={followText}>Following</div>
-              <div style={numberText}>66</div>
+              <div style={numberText}>{this.props.channelFollowings.length || 0}</div>
             </div>
           </div>
         </div>
-        <div id={followButtonId} style={followButton} className='buttonClass' onClick={this.followClick}>
-          <div style={heartIcon}></div>
-          {displayFollowButtonText && <div style={FollowText}>Follow</div> }
-        </div>
+        { ((this.props.channelUser && this.props.currentUser && this.props.currentUser.id !== this.props.channelUser.id) || (!this.props.currentUser)) &&
+          <div id={followButtonId} style={followButton} className='buttonClass' onClick={this.followClick}>
+            {/* <div style={heartIcon}></div> */}
+            <div style={heartIconContainer}>
+              {displayFollowButtonText && <svg id="followSvg" style={heartIcon} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.653 19.415c-1.162 1.141-2.389 2.331-3.653 3.585-6.43-6.381-12-11.147-12-15.808 0-4.005 3.098-6.192 6.281-6.192 2.197 0 4.434 1.042 5.719 3.248 1.279-2.195 3.521-3.238 5.726-3.238 3.177 0 6.274 2.171 6.274 6.182 0 1.269-.424 2.546-1.154 3.861l-1.483-1.484c.403-.836.637-1.631.637-2.377 0-2.873-2.216-4.182-4.274-4.182-3.257 0-4.976 3.475-5.726 5.021-.747-1.54-2.484-5.03-5.72-5.031-2.315-.001-4.28 1.516-4.28 4.192 0 3.442 4.742 7.85 10 13l2.239-2.191 1.414 1.414zm7.347-5.415h-3v-3h-2v3h-3v2h3v3h2v-3h3v-2z" /></svg>}
+              {!displayFollowButtonText && <svg id="followSvg" style={heartIcon} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.582 19.485c-1.141 1.119-2.345 2.287-3.582 3.515-6.43-6.381-12-11.147-12-15.808 0-4.005 3.098-6.192 6.281-6.192 2.197 0 4.434 1.042 5.719 3.248 1.279-2.195 3.521-3.238 5.726-3.238 3.177 0 6.274 2.171 6.274 6.182 0 1.577-.649 3.168-1.742 4.828l-1.447-1.447c.75-1.211 1.189-2.341 1.189-3.381 0-2.873-2.216-4.182-4.274-4.182-3.257 0-4.976 3.475-5.726 5.021-.747-1.54-2.484-5.03-5.72-5.031-2.315-.001-4.28 1.516-4.28 4.192 0 3.442 4.742 7.85 10 13l2.168-2.121 1.414 1.414zm7.418-5.485h-8v2h8v-2z" /></svg>}
+            </div>
+            {displayFollowButtonText && <div style={FollowText}>Follow</div> }
+          </div>
+        }
       </div>
     )
   }

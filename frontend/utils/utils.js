@@ -55,8 +55,9 @@ export const getFollows = (user) => {
 }
 
 export const deleteFollow = (follow) => {
-  // return $.ajax({
-  //   url: '/api/follows/',
-  //   method: 'DELETE',
-  // })
+  return $.ajax({
+    url: '/api/follows/0',
+    method: 'DELETE',
+    data: { follow }
+  })
 }

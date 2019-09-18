@@ -8,4 +8,14 @@
 
 .buttonClass {
   cursor: pointer;
+  color: #9480be;
+}
+.buttonClass:hover {
+  color: #ffffff;
+}
+
+#svgProfile {
+  filter: invert(100%);
+  /* top: 1px; */
+  margin-top: 10px;
 }

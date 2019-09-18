@@ -3,6 +3,7 @@ import { RECEIVE_FOLLOW, RECEIVE_FOLLOWS, DELETE_FOLLOW, REMOVE_FOLLOWS } from '
 const defaultState = {
   currentUser: {},
   currentChannel: {},
+  currentChannelFollowings: {}
 }
 
 const followsReducer = (state = defaultState, action) => {
@@ -18,18 +19,23 @@ const followsReducer = (state = defaultState, action) => {
       newState = Object.assign({}, state);
       if (action.follows.get_request === 'followee') {
         newState['currentChannel'] = action.follows.users_info;
+        newState['currentChannelFollowings'] = action.follows.users_info_for_channel
       } else {
         newState['currentUser'] = action.follows.users_info;
       }
       return newState;
     case DELETE_FOLLOW:
-      return state;
+      newState = Object.assign({}, state);
+      delete newState['currentChannel'][action.follow.follower_id];
+      delete newState['currentUser'][action.follow.followee_id];
+      return newState;
     case REMOVE_FOLLOWS:
       newState = Object.assign({}, state);
       if (action.status === 'logout')
         newState['currentUser'] = {};
       else
         newState['currentChannel'] = {};
+        newState['currentChannelFollowings'] = {};
       return newState;
     default:
       return state;

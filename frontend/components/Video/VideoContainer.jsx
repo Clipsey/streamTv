@@ -8,7 +8,8 @@ const msp = (state, ownProps) => {
 
   return {
     // currentUser: state.users[state.session.id],
-    users: state.entities.users
+    users: state.entities.users,
+    channelUser: state.entities.users[state.ui.channelId]
   }
 }
 

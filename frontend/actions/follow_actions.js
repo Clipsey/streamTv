@@ -31,8 +31,8 @@ export const showFollows = user => dispatch => {
     .then(follows => dispatch(receiveFollows(follows)))
 }
 export const destroyFollow = follow => dispatch => {
-  return postFollow(follow)
-    .then(follow => dispatch(receiveFollow(follow)))
+  return deleteFollow(follow)
+    .then(follow => dispatch(removeFollow(follow)))
 }
 
 export const clearHalfFollows = (status) => dispatch => {

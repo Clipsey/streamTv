@@ -40,12 +40,22 @@ class User < ApplicationRecord
     self.session_token ||= SecureRandom::urlsafe_base64
   end
 
-  has_many :followers,
+  has_many :followees_link,
   foreign_key: :followee_id,
-  class_name: :User
+  class_name: 'Api::Follow'
+
+  has_many :followers_link,
+  foreign_key: :follower_id,
+  class_name: 'Api::Follow'
+
+  has_many :followers,
+  through: :followers_link,
+  source: :followers_users
 
   has_many :followees,
-  foreign_key: :follower_id,
-  class_name: :User
+  through: :followees_link,
+  source: :followees_users
+
+  has_one_attached :photo
 
 end

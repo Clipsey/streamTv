@@ -61,8 +61,8 @@ export class SideBarComponent extends React.Component {
 
     let followings = [];
     if (this.props.currentUser) {
-      followings = this.props.currentUserFollows.map( (username) => {
-        return <div style={regularIcon} key={username} onClick={this.handleFollowClick(username)}> </div>
+      followings = this.props.currentUserFollows.map( (user) => {
+        return <div style={regularIcon} key={user.username} onClick={this.handleFollowClick(user.username)}> </div>
       })
     }
 
@@ -73,7 +73,9 @@ export class SideBarComponent extends React.Component {
           { (!this.props.currentUser || followings.length < 1) &&
             <div style={UsersSection}>
               <div style={section}>
-                <div style={recommendedIcon}></div>
+                <div style={recommendedIcon}>
+                  
+                </div>
               </div>
               <div style={regularIcon}></div>
               <div style={regularIcon}></div>

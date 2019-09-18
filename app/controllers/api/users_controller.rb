@@ -1,6 +1,11 @@
 class Api::UsersController < ApplicationController
 
+  def index 
+    
+  end
+  
   def create
+    require 'open-uri'
     @user = User.new(user_params)
     @user.stream_key = SecureRandom::hex(20)
     date = [params[:user][:day], params[:user][:month], params[:user][:year]]
@@ -25,6 +30,12 @@ class Api::UsersController < ApplicationController
       return
     end
 
+    @user.stream_title = "Super Special Awesome Default Title"
+    @user.stream_category = "None"
+    file = open('https://twitch-name-dev.s3-us-west-1.amazonaws.com/27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
+    @user.photo.attach(io: file, filename: '27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
+    # @user.
+
     if @user.save
       login!(@user)
       render :show
@@ -39,14 +50,32 @@ class Api::UsersController < ApplicationController
     if (params[:id_get]) 
       @user = User.find_by(id: params[:id])
       if @user
-        render :show
+        to_send = {
+          username: @user.username,
+          id: @user.id,
+          stream_key: @user.stream_key,
+          stream_title: @user.stream_title,
+          stream_category: @user.stream_category,
+          picture: url_for(@user.photo)
+        }
+
+        render json: to_send
       else
         render json: { errors: "No User Found" }, status: 422
       end
     else
       @user = User.find_by(username: params[:id])
       if @user
-        render :show
+        to_send = {
+          username: @user.username,
+          id: @user.id,
+          stream_key: @user.stream_key,
+          stream_title: @user.stream_title,
+          stream_category: @user.stream_category,
+          picture: url_for(@user.photo)
+        }
+        
+        render json: to_send
       else
         render json: { errors: "No User Found" }, status: 422
       end

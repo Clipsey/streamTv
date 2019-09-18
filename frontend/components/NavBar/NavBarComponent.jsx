@@ -94,7 +94,6 @@ export class NavBarComponent extends React.Component {
       textAlign: 'center',
       margin: 'auto',
       fontSize: '14px',
-      color: '#9480be',
       height: '48px',
       padding: '0px 10px',
       borderRadius: '1px'
@@ -143,6 +142,13 @@ export class NavBarComponent extends React.Component {
       top: '19px',
       left: '250px'
     }
+    const twitchPictureStyle = {
+      display: 'inline',
+      margin: '0 auto',
+      // marginLeft: '-25%',
+      height: '50%',
+      width: 'auto'
+    }
 
     // color: 'rgb(218, 216, 222)',
 
@@ -165,11 +171,39 @@ export class NavBarComponent extends React.Component {
     let barWidth = window.innerWidth;
     let showSearchBar = barWidth <= 835 ? false : true
 
+      // <div style = { imageElement } >
+      //   <img style={profilePictureStyle} src={this.props.channelUser.picture}></img>
+      // </div >
+
+
+    // const imageElement = {
+    //   borderRadius: '20px',
+    //   height: '33px',
+    //   width: '33px',
+    //   marginLeft: '2px',
+    //   border: 'solid 1px grey',
+    //   overflow: 'hidden'
+    // }
+
+    const profilePictureStyle = {
+      display: 'inline',
+      margin: '0 auto',
+      // marginLeft: '-25%',
+      height: '50%',
+      width: 'auto',
+      borderRadius: '20px',
+      marginBottom: '8px'
+    }
+
+    // console.log(this.props.currentUser)
+
     return (
       <div style={navBarStyle}>
         
         <section style={leftBarStyle}>
-          <div onClick={this.routeChange('')} className='buttonClass' style={twitchIconNav}>Icon</div>
+          <div onClick={this.routeChange('')} className='buttonClass' style={twitchIconNav}>
+            <img style={twitchPictureStyle} src="https://twitch-name-dev.s3-us-west-1.amazonaws.com/GlitchIcon_White_128px.png"></img>
+          </div>
           <div onClick={this.routeChange('')} className='buttonClass' style={DiscoverStyle}>Discover</div>
           <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div>
         </section>
@@ -193,7 +227,10 @@ export class NavBarComponent extends React.Component {
           {!this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleModal('login')}>Log In</div> }
           {!this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleModal('signup')}>Sign Up</div> }
           {this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.logoutCheck}>Sign Out</div> } 
-          {this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleUserDrop}>User</div> }
+          {this.props.currentUser && <div style={visualBoxRight} className='buttonClass' onClick={this.toggleUserDrop}>
+            {this.props.currentUser.picture && <img style={profilePictureStyle} src={this.props.currentUser.picture}></img>}
+            {!this.props.currentUser.picture && <svg id="svgProfile" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z" /></svg>}
+          </div> }
           
           {/* <div style={visualBoxRight} onClick={this.logoutCheck}>
             {this.props.currentUser ? "Sign Out" : "User"}

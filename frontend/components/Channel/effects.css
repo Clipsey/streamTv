@@ -23,3 +23,13 @@
 #followButtonSmall:hover {
   background-color: #bd0f0f;
 }
+
+#followSvg {
+  filter: invert(100%);
+}
+
+#svgProfileChannel {
+  filter: invert(100%);
+  margin-top: 7px;
+  margin-left: 3px;
+}

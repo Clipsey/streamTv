@@ -1,7 +1,8 @@
 class Api::FollowsController < ApplicationController
   def show
-    follow = params[:user][:follow] == 'follower' ? 'follower' : 'followee'
+    follow = params[:user][:follow]
     users_info = {}
+    users_info_for_channel = {}
     on_user_id = params[:user][:id]
     if follow == 'followee'
       # All users who are following the user specified by the followee_id
@@ -9,9 +10,22 @@ class Api::FollowsController < ApplicationController
       @follows = Api::Follow.where(followee_id: on_user_id)
       @follows.each do |follow|
         user_id = follow.follower_id
-        username = User.find_by(id: user_id).username
-        users_info[user_id] = username
-        # user_ids.push({username: username, id: user_id})
+
+        user = User.find_by(id: user_id)
+        username = user.username
+        picture = url_for(user.photo)
+
+        users_info[user_id] = { username: username, picture: picture }
+      end
+      @follows = Api::Follow.where(follower_id: on_user_id)
+      @follows.each do |follow|
+        user_id = follow.followee_id
+        
+        user = User.find_by(id: user_id)
+        username = user.username
+        picture = url_for(user.photo)
+
+        users_info_for_channel[user_id] = { username: username, picture: picture }
       end
     else
       # All users who are followed by the user specified by follower_id
@@ -19,12 +33,15 @@ class Api::FollowsController < ApplicationController
       @follows = Api::Follow.where(follower_id: on_user_id)
       @follows.each do |follow|
         user_id = follow.followee_id
-        username = User.find_by(id: user_id).username
-        users_info[user_id] = username
-        # user_ids.push({username: username, id: user_id})
+
+        user = User.find_by(id: user_id)
+        username = user.username
+        picture = url_for(user.photo)
+
+        users_info[user_id] = { username: username, picture: picture }
       end
     end
-    render json: {users_info: users_info, get_request: follow}
+    render json: {users_info: users_info, users_info_for_channel: users_info_for_channel, get_request: follow}
   end
 
   def create
@@ -44,7 +61,8 @@ class Api::FollowsController < ApplicationController
     @follow = Api::Follow
                 .where(followee_id: params[:followee_id])
                 .where(follower_id: params[:follower_id])
-    render json: @follow
+    Api::Follow.destroy(@follow[0].id)
+    render json: @follow[0]
   end 
 
   def follow_params
