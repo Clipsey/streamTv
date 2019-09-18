@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :follows, only: [:create, :show, :destroy]
   end
 
+  resources :conversations, only: [:create, :index]
+  resources :messages, only: [:create]
+
   mount ActionCable.server, at: '/cable'
 
 

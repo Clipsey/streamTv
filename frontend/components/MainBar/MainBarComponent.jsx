@@ -14,16 +14,15 @@ export class MainBarComponent extends React.Component {
     const mainWidth = (window.innerWidth - 49);
     const mainStyle = {
       float: 'left',
-      width: `${mainWidth}px`,
       width: '100vw',
-      height: '100%',
-      position: 'fixed',
-      top: '49px',
-      left: '49px',
-      // border: 'solid white 1px'
+      position: 'relative',
+      // top: '49px',
+      // left: '49px',
       backgroundColor: "#0f0e11",
       boxSizing: 'border-box',
-      borderLeft: 'solid 1px #252328'
+      borderLeft: 'solid 1px #252328',
+      overflowY: 'scroll',
+      margin: '49px'
     }
     const mainContainer = {
       paddingLeft: '20px',
