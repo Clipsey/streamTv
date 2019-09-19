@@ -49,7 +49,18 @@ class Api::FollowsController < ApplicationController
     if @follow.save
       follower = User.find_by(id: @follow.follower_id)
       followee = User.find_by(id: @follow.followee_id)
-      render json: {follow: @follow, follower: follower, followee: followee}
+      render json: {follow: @follow, 
+        follower: {
+          id: follower.id,
+          username: follower.username,
+          picture: url_for(follower.photo)
+        }, 
+        followee: {
+          id: followee.id,
+          username: followee.username,
+          picture: url_for(followee.photo)
+        }
+      }
     else
       flash[:errors] = @follows.errors.full_messages
       render json: { errors: flash[:errors] }, status: 422

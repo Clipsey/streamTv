@@ -74,7 +74,8 @@ export class NavBarComponent extends React.Component {
       justifyContent: 'space-between',
       position: 'fixed',
       top: '0',
-      left: '0'
+      left: '0',
+      zIndex: '1'
     }
     const leftBarStyle = {
       display: 'flex',
@@ -93,7 +94,7 @@ export class NavBarComponent extends React.Component {
       paddingRight: '6px',
       textAlign: 'center',
       margin: 'auto',
-      fontSize: '14px',
+      fontSize: '16px',
       height: '48px',
       padding: '0px 10px',
       borderRadius: '1px'
@@ -171,20 +172,6 @@ export class NavBarComponent extends React.Component {
     let barWidth = window.innerWidth;
     let showSearchBar = barWidth <= 835 ? false : true
 
-      // <div style = { imageElement } >
-      //   <img style={profilePictureStyle} src={this.props.channelUser.picture}></img>
-      // </div >
-
-
-    // const imageElement = {
-    //   borderRadius: '20px',
-    //   height: '33px',
-    //   width: '33px',
-    //   marginLeft: '2px',
-    //   border: 'solid 1px grey',
-    //   overflow: 'hidden'
-    // }
-
     const profilePictureStyle = {
       display: 'inline',
       margin: '0 auto',
@@ -205,7 +192,7 @@ export class NavBarComponent extends React.Component {
             <img style={twitchPictureStyle} src="https://twitch-name-dev.s3-us-west-1.amazonaws.com/GlitchIcon_White_128px.png"></img>
           </div>
           <div onClick={this.routeChange('')} className='buttonClass' style={DiscoverStyle}>Discover</div>
-          <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div>
+          {/* <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div> */}
         </section>
         
         {/* Change text color to white in change handler */}

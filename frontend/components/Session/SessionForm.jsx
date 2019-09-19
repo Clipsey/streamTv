@@ -93,7 +93,7 @@ export class SessionForm extends React.Component {
       height: '100%',
       width: '30px',
       marginRight: '8px',
-      border: 'solid 1px white',
+      // border: 'solid 1px white',
     }
 
     const errorStyle = {
@@ -110,7 +110,7 @@ export class SessionForm extends React.Component {
     }
     const errorIconStyle = {
       borderRadius: '20px',
-      border: 'solid 1px red',
+      // border: 'solid 1px red',
       height: '22px',
       marginTop: '7px',
       marginLeft: '10px',
@@ -199,7 +199,7 @@ export class SessionForm extends React.Component {
     }
     const errorFormIcon = {
       borderRadius: '20px',
-      border: 'solid 1px red',
+      // border: 'solid 1px red',
       height: '10px',
       marginTop: '7px',
       marginLeft: '10px',
@@ -300,6 +300,11 @@ export class SessionForm extends React.Component {
       textAlign: 'center'
     }
 
+    const errorSVG = {
+      fill: '#e21212',
+      overflow: 'visible'
+    }
+
 
 
 
@@ -333,6 +338,8 @@ export class SessionForm extends React.Component {
       }
     }
 
+    // <img style={twitchPictureStyle} src="https://twitch-name-dev.s3-us-west-1.amazonaws.com/GlitchIcon_White_128px.png"></img>
+
     return (
 
       <div>
@@ -340,7 +347,9 @@ export class SessionForm extends React.Component {
           
           <div style={headerStyle}>
             {/* Add picture-icon here */}
-            <div style={iconStyle}></div>
+            <div style={iconStyle}>
+              <img style={iconStyle} src="https://twitch-name-dev.s3-us-west-1.amazonaws.com/GlitchIcon_White_128px.png"></img>
+            </div>
             { this.props.formType === 'login' ? <p>Log in to Twitch</p> : <p>Join Twitch today</p> }
           </div>
 
@@ -359,8 +368,11 @@ export class SessionForm extends React.Component {
 
           {errors !== null && 
             <div style={errorStyle}>
-              {/* Add picture-icon here  - for Twitch Icon on login/sign up form */}
-              <div style={errorIconStyle}></div>
+              <div style={errorIconStyle}>
+                <svg style={errorSVG} width='50px' height='50px' viewBox='3 3 35 35'>
+                  <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-8a1 1 0 0 0 1 1h8a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fillRule="evenodd"></path>  
+                </svg>
+              </div>
               <div style={errorTextStyle}>{errorsDiv}</div>
               <div style={errorSuggestionStyle}>Try not being wrong?</div>
             </div>
@@ -369,7 +381,13 @@ export class SessionForm extends React.Component {
           <div style={usernameLabel}>
             <div style={labelText}>Username</div>
             { errors && errors.includes("Username") && 
-              <div style={errorFormIcon}></div>
+              <div style={errorFormIcon}>
+                <div style={errorIconStyle}>
+                  <svg style={errorSVG} width='50px' height='50px' viewBox='17 22 75 57'>
+                    <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-8a1 1 0 0 0 1 1h8a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fillRule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
             }
           </div>
           <input id="username" style={usernameInput} type="text" 
@@ -380,7 +398,13 @@ export class SessionForm extends React.Component {
           <div style={passwordLabel}>
             <div style={labelText}>Password</div>
             { errors && errors.includes('Password') && 
-              <div style={errorFormIcon}></div>
+              <div style={errorFormIcon}>
+                <div style={errorIconStyle}>
+                  <svg style={errorSVG} width='50px' height='50px' viewBox='17 22 75 57'>
+                    <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-8a1 1 0 0 0 1 1h8a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fillRule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
             }
           </div>
           <input id="password"style={passwordInput} type="password" 
@@ -393,7 +417,13 @@ export class SessionForm extends React.Component {
               <div style={dobTop}>
                 <div style={labelText}>Date of Birth</div>
                 {this.props.errors.session == "Signup was incorrect." &&
-                  <div style={errorFormIcon}></div>
+                  <div style={errorFormIcon}>
+                    <div style={errorIconStyle}>
+                      <svg style={errorSVG} width='50px' height='50px' viewBox='17 22 75 57'>
+                        <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-8a1 1 0 0 0 1 1h8a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fillRule="evenodd"></path>
+                      </svg>
+                    </div>
+                  </div>
                 }
               </div>
               <label style={dobBottom} id="dobId">
@@ -423,7 +453,13 @@ export class SessionForm extends React.Component {
             <div style={emailLabel}>
               <div style={labelText}>Email</div>
               { errors && errors.includes('Email') &&
-                <div style={errorFormIcon}></div>
+                <div style={errorFormIcon}>
+                  <div style={errorIconStyle}>
+                    <svg style={errorSVG} width='50px' height='50px' viewBox='17 22 75 57'>
+                      <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-8a1 1 0 0 0 1 1h8a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fillRule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
               }
             </div>
           }

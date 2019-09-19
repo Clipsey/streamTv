@@ -94,7 +94,10 @@ export class ChannelComponent extends React.Component {
       fontSize: '13px',
       color: '#b19dd8',
       display: 'flex',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      position: 'fixed',
+      top: '49px',
+      zIndex: '1'
     }
     const listContainer = {
       display: 'flex',

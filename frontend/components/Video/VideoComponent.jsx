@@ -144,6 +144,10 @@ class Video extends React.Component {
       // marginBottom: '4px'
     }
 
+    const streamDebug = {
+      marginTop: '20px'
+    }
+
     return (
       <div>
         <div className="video-box" id="videoContainer" style={videoContainer}>
@@ -179,6 +183,12 @@ class Video extends React.Component {
               </div>
             </div>
           </div>
+        </div>
+        <div style={streamDebug}> 
+          { 
+            (this.props.currentUser && this.props.channelUser && this.props.currentUser.id == this.props.channelUser.id) && 
+            <p>CurrentUser StreamKey: {this.props.users[this.props.currentUser.id].stream_key}</p> 
+          }
         </div>
       </div>
     );

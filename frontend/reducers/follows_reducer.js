@@ -12,8 +12,9 @@ const followsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_FOLLOW:
       newState = Object.assign({}, state);
-      newState['currentUser'][action.follow.followee.id] = action.follow.followee.username;
-      newState['currentChannel'][action.follow.follower.id] = action.follow.follower.username;
+      // debugger;
+      newState['currentUser'][action.follow.followee.id] = {username: action.follow.followee.username, picture: action.follow.followee.picture};
+      newState['currentChannel'][action.follow.follower.id] = {username: action.follow.follower.username, picture: action.follow.follower.picture};
       return newState;
     case RECEIVE_FOLLOWS:
       newState = Object.assign({}, state);

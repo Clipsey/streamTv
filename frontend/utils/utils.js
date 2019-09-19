@@ -61,3 +61,11 @@ export const deleteFollow = (follow) => {
     data: { follow }
   })
 }
+
+export const fetchUsers = (request) => {
+  return $.ajax({
+    url: '/api/users',
+    method: 'GET',
+    data: {request}
+  })
+}

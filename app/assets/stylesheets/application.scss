@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.backgroundImageForIndex {
+  background-image: image-url('GlitchIcon_White_128px');
+  background-size: 25px 25px;
+
+  background-repeat: no-repeat;
+  background-position: 13px 13px;
+  // color: black;
+}

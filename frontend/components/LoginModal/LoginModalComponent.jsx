@@ -1,23 +1,7 @@
 import React from 'react';
 import {LoginFormContainer} from '../Session/LoginFormContainer';
 import {SignupFormContainer} from '../Session/SignupFormContainer';
-
-// #392e5c
-// #2c2541
-// #232127
-// #19171c
-// #0f0e11
-
-//purples
-// #b19dd8 - Underline Purple
-// #6441a4 - Active Purple
-// rgb(177, 157, 216);
-// #898395
-// #6e6779 - Inactive Purple
-// #322f37 - Bright Grey
-// #898395 - Dull Bright Grey
-
-// #7d5bbe
+import './effects.css';
 
 class LoginModalComponent extends React.Component {
 
@@ -94,7 +78,7 @@ class LoginModalComponent extends React.Component {
       width: '30px',
       height: '30px',
       marginLeft: '5px',
-      border: 'solid 1px white',
+      // border: 'solid 1px white',
       float: 'left'
     }
 
@@ -116,6 +100,7 @@ class LoginModalComponent extends React.Component {
               }
           </div>
           <div style={xBox} onClick={this.toggleModal}>
+            <svg id="svgX" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 -2 32 32"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" /></svg>
           </div>
         </div>
       </div>

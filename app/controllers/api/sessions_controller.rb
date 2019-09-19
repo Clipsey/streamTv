@@ -6,7 +6,16 @@ class Api::SessionsController < ApplicationController
       render json: { errors: @user }, status: 422
     else
       login!(@user)
-      render 'api/users/show'
+      # render 'api/users/show'
+      to_send = {
+          username: @user.username,
+          id: @user.id,
+          stream_key: @user.stream_key,
+          stream_title: @user.stream_title,
+          stream_category: @user.stream_category,
+          picture: url_for(@user.photo)
+        }
+      render json: to_send
     end
   end
   

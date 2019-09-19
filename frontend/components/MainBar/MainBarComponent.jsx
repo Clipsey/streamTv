@@ -1,9 +1,12 @@
 // import VideoContainer from '../../Video/VideoContainer';
 // import VideoContainer from '../../components/Video/Video'
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import VideoContainer from '../Video/VideoContainer';
 import ChannelContainer from '../Channel/ChannelContainer';
+import IndexContainer from '../Index/IndexContainer';
+import FollowersContainer from '../Followings/FollowersContainer';
+import FolloweesContainer from '../Followings/FolloweesContainer';
 
 export class MainBarComponent extends React.Component {
   constructor(props) {
@@ -13,7 +16,7 @@ export class MainBarComponent extends React.Component {
   render() {
     const mainWidth = (window.innerWidth - 49);
     const mainStyle = {
-      float: 'left',
+      // float: 'left',
       width: '100vw',
       position: 'relative',
       // top: '49px',
@@ -31,17 +34,26 @@ export class MainBarComponent extends React.Component {
       boxSizing: 'border-box'
     }
 
+    if (this.props.location.pathname.includes(`/users/`)) {
+      console.log('here')
+      mainStyle['padding'] = '49px 0px';
+    } else {
+
+      console.log('not here')
+    }
+
     return (
       <div style={mainStyle} id="mainBarComp">
 
         <Route path="/users/:username" component={ChannelContainer}></Route>
         <div style={mainContainer} id="mainContainer">
-          <Route exact path="/users/:username" component={VideoContainer}></Route>
-          
+          <Switch>
+            <Route exact path="/users/:username" component={VideoContainer}></Route>
+            <Route exact path="/users/:username/following" component={FolloweesContainer}></Route>
+            <Route exact path="/users/:username/followers" component={FollowersContainer}></Route>
+            <Route path="/" component={IndexContainer}></Route>
+          </Switch>
           <br></br>
-          <p>Debug: Current User Info</p>
-          <p>CurrentUser Username: {this.props.currentUser && this.props.currentUser.username}</p>
-          <p>CurrentUser StreamKey: {this.props.currentUser && this.props.streamKey}</p>
         </div>
       </div>
     );
