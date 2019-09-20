@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_180232) do
+ActiveRecord::Schema.define(version: 2019_09_20_021257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_09_18_180232) do
     t.string "stream_title"
     t.string "stream_category"
     t.integer "conversation_id"
+    t.integer "category_id"
     t.index ["username"], name: "index_users_on_username"
   end
 

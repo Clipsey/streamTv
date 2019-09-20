@@ -13,28 +13,31 @@ class Video extends React.Component {
   }
 
   retry(force) {
-    return () => {
-      if (force || this.streamingUsername !== this.props.match.params.username) {
+    return (prevProps) => {
+      // debugger;
+      if (force || prevProps.match.params.username !== this.props.match.params.username) {
         this.props.getUserByName(this.props.match.params.username).then((action) => {
-          this.streamKey = action.user.stream_key;
-          this.streamingUsername = this.props.match.params.username;
-          if (this.timeout == null) {
-            startup(this.props.currentUser, this.streamKey, 
-              (result) => {
-                if (result && this.background != 'linear-gradient(black, black)') {
-                  this.background = 'linear-gradient(black, black)';
-                  this.forceUpdate();
-                }
-                else if (!result && this.background != 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)') {
-                  this.background = 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)';
-                  this.forceUpdate();
-                }
-              }
-            );
-            this.timeout = setTimeout(() => {
-              this.timeout = null;
-            }, 10000);
-          }
+          this.props.getCategory(action.user.stream_category);
+
+          // this.streamKey = action.user.stream_key;
+          // this.streamingUsername = this.props.match.params.username;
+          // if (this.timeout == null) {
+          //   startup(this.props.currentUser, this.streamKey, 
+          //     (result) => {
+          //       if (result && this.background != 'linear-gradient(black, black)') {
+          //         this.background = 'linear-gradient(black, black)';
+          //         this.forceUpdate();
+          //       }
+          //       else if (!result && this.background != 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)') {
+          //         this.background = 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)';
+          //         this.forceUpdate();
+          //       }
+          //     }
+          //   );
+          //   this.timeout = setTimeout(() => {
+          //     this.timeout = null;
+          //   }, 10000);
+          // }
         });
       }
     }
@@ -42,12 +45,12 @@ class Video extends React.Component {
 
   componentDidMount() {
     this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 2}px`;
-    this.retry(true);
+    this.retry(true)();
   }
   
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.maxSize = `${document.getElementById('videoContainer').offsetHeight - 2}px`;
-    this.retry(false);
+    this.retry(false)(prevProps);
   }
 
   render() {
@@ -65,8 +68,6 @@ class Video extends React.Component {
     
     const videoStyle = {
       width: '100%',
-      // autoPlay: 'true',
-      // height: '100%',
       maxHeight: `${this.maxSize}`,
       muted: 'true',
       boxSizing: 'border-box'
@@ -126,7 +127,6 @@ class Video extends React.Component {
     }
     
     const streamInfoImage = {
-      border: 'white solid 1px',
       width: '60px',
       height: '80px',
       marginRight: '10px',
@@ -164,7 +164,9 @@ class Video extends React.Component {
             />
         </div>
         <div style={streamInfoContainer}>
-          <div style={streamInfoImage}></div>
+          <div style={streamInfoImage}>
+            {this.props.channelUser && <img style={streamInfoImage} src={this.props.categories[this.props.channelUser.stream_category] && this.props.categories[this.props.channelUser.stream_category]['picture']}></img>}
+          </div>
           <div style={streamInfoValues}>
             <div style={streamInfoTitle}>
               {this.props.channelUser && this.props.channelUser.stream_title}

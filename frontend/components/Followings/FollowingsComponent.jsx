@@ -94,6 +94,7 @@ export class FollowingsComponent extends React.Component {
     const userDivs1 = [];
     const userDivs2 = [];
     const userDivs3 = [];
+    const userDivs4 = [];
     let divCounter = 1;
     if (window.innerWidth > 1900) {
       divCounter = 7;
@@ -151,10 +152,19 @@ export class FollowingsComponent extends React.Component {
           </div>
         )
       }
-    }
-
-    if (userDivs1.length + userDivs2.length + userDivs3.length < divCounter * 3) {
-
+      while (displayUsers.length > 0) {
+        let user = displayUsers.pop();
+        userDivs4.push(
+          <div key={user.username} style={elementStyle} onClick={this.navigateUserClick(user.username)} >
+            <div>
+              <div style={regularIcon}>
+                <img style={regularIcon} src={user.picture}></img>
+              </div>
+            </div>
+            <div style={streamUsername}>{user.username}</div>
+          </div>
+        )
+      }
     }
 
     return (
@@ -169,6 +179,9 @@ export class FollowingsComponent extends React.Component {
           </div>
           <div style={listStyle}>
             {userDivs3}
+          </div>
+          <div style={listStyle}>
+            {userDivs4}
           </div>
         </div>
 

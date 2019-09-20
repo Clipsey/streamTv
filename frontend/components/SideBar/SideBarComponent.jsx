@@ -30,7 +30,7 @@ export class SideBarComponent extends React.Component {
       float: 'left',
       borderRight: 'solid 1px #252328',
       position: 'fixed',
-      top: '49px',
+      top: '50px',
       left: '0px',
       zIndex: '1'
     }

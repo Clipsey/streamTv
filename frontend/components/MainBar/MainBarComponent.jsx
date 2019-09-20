@@ -7,6 +7,7 @@ import ChannelContainer from '../Channel/ChannelContainer';
 import IndexContainer from '../Index/IndexContainer';
 import FollowersContainer from '../Followings/FollowersContainer';
 import FolloweesContainer from '../Followings/FolloweesContainer';
+import CategoryContainer from '../Category/CategoryContainer';
 
 export class MainBarComponent extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ export class MainBarComponent extends React.Component {
             <Route exact path="/users/:username" component={VideoContainer}></Route>
             <Route exact path="/users/:username/following" component={FolloweesContainer}></Route>
             <Route exact path="/users/:username/followers" component={FollowersContainer}></Route>
-            {/* <Route exact path="/directory/"></Route> */}
+            <Route exact path="/directory/" component={CategoryContainer}></Route>
             <Route path="/" component={IndexContainer}></Route>
           </Switch>
           <br></br>

@@ -69,3 +69,17 @@ export const fetchUsers = (request) => {
     data: {request}
   })
 }
+
+export const fetchCategories = (request) => {
+  return $.ajax({
+    url: '/categories/',
+    method: 'GET'
+  })
+}
+
+export const fetchCategory = (title) => {
+  return $.ajax({
+    url: `/categories/${title}`,
+    method: 'GET'
+  })
+}

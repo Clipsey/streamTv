@@ -192,7 +192,7 @@ export class NavBarComponent extends React.Component {
             <img style={twitchPictureStyle} src="https://twitch-name-dev.s3-us-west-1.amazonaws.com/GlitchIcon_White_128px.png"></img>
           </div>
           <div onClick={this.routeChange('')} className='buttonClass' style={DiscoverStyle}>Discover</div>
-          {/* <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div> */}
+          <div onClick={this.routeChange('directory')} className='buttonClass' style={BrowseStyle}>Browse</div>
         </section>
         
         {/* Change text color to white in change handler */}
