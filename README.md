@@ -1,24 +1,4 @@
-# README
+![banner](https://user-images.githubusercontent.com/20288304/65359765-5cda9000-dbb2-11e9-808f-f771249f9d59.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#  `twitch.tv` Clone
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
