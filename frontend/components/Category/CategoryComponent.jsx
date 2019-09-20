@@ -48,7 +48,6 @@ export class CategoryComponent extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    console.log("categories");
     this.props.getCategoriesInfo();
   }
 
