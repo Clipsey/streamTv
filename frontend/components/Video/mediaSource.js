@@ -31,6 +31,7 @@ const startup = (user, streamKey, cb) => {
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
         cb(false);
+        videoTag.pause();
       });
 
       attempt();

@@ -19,24 +19,24 @@ class Video extends React.Component {
         this.props.getUserByName(this.props.match.params.username).then((action) => {
           this.props.getCategory(action.user.stream_category);
 
-          // this.streamKey = action.user.stream_key;
-          // this.streamingUsername = this.props.match.params.username;
+          this.streamKey = action.user.stream_key;
+          this.streamingUsername = this.props.match.params.username;
           // if (this.timeout == null) {
-          //   startup(this.props.currentUser, this.streamKey, 
-          //     (result) => {
-          //       if (result && this.background != 'linear-gradient(black, black)') {
-          //         this.background = 'linear-gradient(black, black)';
-          //         this.forceUpdate();
-          //       }
-          //       else if (!result && this.background != 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)') {
-          //         this.background = 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)';
-          //         this.forceUpdate();
-          //       }
-          //     }
-          //   );
-          //   this.timeout = setTimeout(() => {
-          //     this.timeout = null;
-          //   }, 10000);
+            startup(this.props.currentUser, this.streamKey, 
+              (result) => {
+                if (result && this.background != 'linear-gradient(black, black)') {
+                  this.background = 'linear-gradient(black, black)';
+                  this.forceUpdate();
+                }
+                else if (!result && this.background != 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)') {
+                  this.background = 'linear-gradient(black, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, #19171c, black)';
+                  this.forceUpdate();
+                }
+              }
+            );
+            // this.timeout = setTimeout(() => {
+            //   this.timeout = null;
+            // }, 10000);
           // }
         });
       }
