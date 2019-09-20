@@ -35,11 +35,7 @@ export class MainBarComponent extends React.Component {
     }
 
     if (this.props.location.pathname.includes(`/users/`)) {
-      console.log('here')
       mainStyle['padding'] = '49px 0px';
-    } else {
-
-      console.log('not here')
     }
 
     return (

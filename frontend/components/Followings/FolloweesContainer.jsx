@@ -7,6 +7,7 @@ const msp = (state, ownProps) => {
   return {
     type: "Followees",
     currentUser: state.entities.users[state.session.id],
+    channelUser: state.entities.users[state.ui.channelId],
     users: Object.values(state.follows.currentChannelFollowings)
   }
 }

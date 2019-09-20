@@ -111,7 +111,6 @@ export class FollowingsComponent extends React.Component {
 
     let displayUsers = Array.from(this.props.users);
     let length = displayUsers.length;
-    console.log(this.props.users);
     if (displayUsers.length > 1) {
       for (let i = 0; i < divCounter && displayUsers.length > 0; ++i) {
         let user = displayUsers.pop();

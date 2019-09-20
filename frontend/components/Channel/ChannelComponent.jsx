@@ -50,7 +50,6 @@ export class ChannelComponent extends React.Component {
   }
 
   followClick(e) {
-    // clickAction if current_user else login modal
     let followee_id = null;
     let follower_id = null;
     if (this.props.currentUser) {
@@ -68,8 +67,6 @@ export class ChannelComponent extends React.Component {
       })
     } else if (this.props.currentUser
                && this.props.follows.currentChannel[this.props.currentUser.id]) {
-      //Delete Follow
-      console.log('delete');
       this.props.destroyFollow({
         followee_id,
         follower_id

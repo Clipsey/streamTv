@@ -34,7 +34,19 @@ class Api::UsersController < ApplicationController
           picture: url_for(user.photo)
         }
       end
-
+    elsif params[:request][:category]
+      users_list = User.where(stream_category: params[:request][:category])
+      users_list.each do |user|
+        user_data = {
+          username: user.username,
+          id: user.id,
+          stream_key: user.stream_key,
+          stream_title: user.stream_title,
+          stream_category: user.stream_category,
+          picture: url_for(user.photo)
+        }
+        users[user_data[:id]] = user_data
+      end
     end
     render json: users
   end
