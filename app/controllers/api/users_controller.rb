@@ -78,9 +78,10 @@ class Api::UsersController < ApplicationController
     end
 
     @user.stream_title = "Super Special Awesome Default Title"
-    @user.stream_category = "None"
+    @user.stream_category = "Poker"
     file = open('https://twitch-name-dev.s3-us-west-1.amazonaws.com/27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
     @user.photo.attach(io: file, filename: '27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
+    @user.category_id = Category.find_by(title: "Poker").id
 
     if @user.save
       login!(@user)
