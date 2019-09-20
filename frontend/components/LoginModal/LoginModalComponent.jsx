@@ -79,7 +79,8 @@ class LoginModalComponent extends React.Component {
       height: '30px',
       marginLeft: '5px',
       // border: 'solid 1px white',
-      float: 'left'
+      float: 'left',
+      cursor: 'pointer'
     }
 
     if (this.props.modalTab === 'signup') {

@@ -148,7 +148,8 @@ export class SessionForm extends React.Component {
       textAlign: 'center',
       lineHeight: '30px',
       fontFamily: 'sans-serif',
-      color: '#b19dd8'
+      color: '#b19dd8',
+      cursor: 'pointer',
     }
     const inActiveTab = {
       float: 'left',
@@ -158,7 +159,8 @@ export class SessionForm extends React.Component {
       textAlign: 'center',
       lineHeight: '30px',
       fontFamily: 'sans-serif',
-      color: '#6e6779'
+      color: '#6e6779',
+      cursor: 'pointer'
     }
     
     const usernameLabel = {

@@ -58,6 +58,7 @@ export class SideBarComponent extends React.Component {
       width: '30px',
       height: '30px',
       margin: '10px 5px',
+      cursor: 'pointer'
     }
     const svgStyle = {
       margin: '0px 5px',
