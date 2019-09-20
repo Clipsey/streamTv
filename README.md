@@ -2,3 +2,5 @@
 
 #  `twitch.tv` Clone
 
+My attempt at a clone of a twitch.tv, a livestreaming website for a variety of content, ranging from video games to performance arts like dancing, or simply chatting. The important aspect of the website is that users are able to broadcast live to other users the website, and users are able to follow their favorite streamers.
+
