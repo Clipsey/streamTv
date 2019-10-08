@@ -148,7 +148,8 @@ export class NavBarComponent extends React.Component {
       margin: '0 auto',
       // marginLeft: '-25%',
       height: '50%',
-      width: 'auto'
+      width: '50%'
+      // width: 'auto'
     }
 
     // color: 'rgb(218, 216, 222)',
