@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {SessionForm} from './SessionForm';
+import SessionForm from './SessionForm';
 import { login, getUserById } from '../../actions/user_actions';
 import { toggleLoginModal } from '../../actions/ui_actions';
 import { resetErrors } from '../../actions/user_actions';

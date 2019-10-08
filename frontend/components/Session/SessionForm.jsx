@@ -1,9 +1,10 @@
 import React from 'react';
+import Radium from 'radium';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './effects.css'
 
-export class SessionForm extends React.Component {
+class SessionForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -260,7 +261,8 @@ export class SessionForm extends React.Component {
       borderRadius: '4px',
       height: '15px',
       padding: '8px',
-      margin: '4px 0px',
+      marginTop: '4px',
+      marginBottom: '4px',
       fontSize: '12px',
       width: '17.5%',
       height: '100%',
@@ -428,10 +430,11 @@ export class SessionForm extends React.Component {
                   </div>
                 }
               </div>
-              <label style={dobBottom} id="dobId">
+              <div style={dobBottom} id="dobId">
                 <select id="selectOverride" name="month" style={dobMonthStyle} className={dobMonthFocus} placeholder="Month"
-                  onChange={this.handleChange}>
-                  <option value="Month" disabled>Month</option>
+                  onChange={this.handleChange}
+                  >
+                  <option value="Month">Month</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -447,7 +450,7 @@ export class SessionForm extends React.Component {
                 </select>
                 <input type="text" value={this.state.day} onChange={this.handleChange} style={dobDayStyle} className={dobDayFocus} name="day" placeholder="Day"></input>
                 <input type="text" value={this.state.year} onChange={this.handleChange} style={dobYearStyle} className={dobYearFocus} name="year" placeholder="Year"></input>
-              </label>
+              </div>
             </div>
           }
 
@@ -483,3 +486,5 @@ export class SessionForm extends React.Component {
     );
   }
 }
+
+export default SessionForm = Radium(SessionForm);
