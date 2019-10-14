@@ -29,16 +29,17 @@ export class AppComponent extends React.Component {
     const base = {
       color: 'rgb(218, 216, 222)',
       position: 'absolute',
-      height: '100vh',
-      width: '100vw',
+      height: '100%',
+      width: '100%',
       backgroundColor: "#0f0e11",
       fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+      overflowX: 'hidden',
+      // overflowY: 'hidden'
     }
     const MainDiv = {
-      width: '100vw',
-      height: '100vh',
+      // width: '100vw',
+      // height: '100vh',
       display: 'relative',
-      overflow: 'scroll'
     }
 
     return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import AppContainer from './App/AppContainer';
+import './root.css';
 
 export const Root = ({ store }) => (
   <Provider store={store}>  

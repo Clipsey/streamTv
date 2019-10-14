@@ -93,7 +93,7 @@ export class ChannelComponent extends React.Component {
       display: 'flex',
       justifyContent: 'space-between',
       position: 'fixed',
-      top: '51px',
+      top: '49px',
       zIndex: '1'
     }
     const listContainer = {

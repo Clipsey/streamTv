@@ -15,24 +15,22 @@ export class MainBarComponent extends React.Component {
   }
 
   render() {
-    const mainWidth = (window.innerWidth - 49);
     const mainStyle = {
       // float: 'left',
       width: '100vw',
       position: 'relative',
-      // top: '49px',
-      // left: '49px',
       backgroundColor: "#0f0e11",
       boxSizing: 'border-box',
       borderLeft: 'solid 1px #252328',
       overflowY: 'scroll',
-      margin: '49px'
+      margin: '49px',
+      // overflow: 'hidden'
     }
     const mainContainer = {
       paddingLeft: '20px',
       paddingTop: '20px',
-      paddingRight: '69px',
-      boxSizing: 'border-box'
+      paddingRight: '49px',
+      overflowX: 'hidden',
     }
 
     if (this.props.location.pathname.includes(`/users/`)) {

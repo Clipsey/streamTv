@@ -176,14 +176,11 @@ export class NavBarComponent extends React.Component {
     const profilePictureStyle = {
       display: 'inline',
       margin: '0 auto',
-      // marginLeft: '-25%',
       height: '50%',
       width: 'auto',
       borderRadius: '20px',
       marginBottom: '8px'
     }
-
-    // console.log(this.props.currentUser)
 
     return (
       <div style={navBarStyle}>
