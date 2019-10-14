@@ -17,7 +17,7 @@ export class MainBarComponent extends React.Component {
   render() {
     const mainStyle = {
       // float: 'left',
-      width: '100vw',
+      width: '100%',
       position: 'relative',
       backgroundColor: "#0f0e11",
       boxSizing: 'border-box',
