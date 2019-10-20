@@ -68,6 +68,50 @@ export class CategoryComponent extends React.Component {
   }
 
   render() {
+    const flexContainerStyle = {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      // justifyContent: 'space-around'
+    }
+
+    const flexItemStyle = {
+      display: 'flex',
+      flexDirection: 'column',
+      height: '33vw',
+      maxHeight: '400px',
+      width: '20vw',
+      maxWidth: '242px',
+      minHeight: '200px',
+      minWidth: '121px',
+      margin: '0px 5px',
+      boxSizing: 'border-box',
+      backgroundColor: '#0f0e11',
+      cursor: 'pointer',
+      // position: 'relative',
+      // border: 'solid 1px white',
+    
+    }
+    const flexPictureStyle = {
+      height: '80%',
+      width: '100%',
+      boxSizing: 'border-box',
+      borderRadius: '4px',
+    }
+    const flexDescriptionStyle = {
+      height: '20%',
+      width: '100%',
+      boxSizing: 'border-box',
+      border: 'solid 1px black',
+      fontWeight: 'bold',
+      marginTop: '4px'
+    }
+    const viewerShipStyle = {
+      marginTop: '2px',
+      fontWeight: '300',
+      fontSize: '13px'
+    }
+
     const listStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -125,90 +169,43 @@ export class CategoryComponent extends React.Component {
       height: '40px',
     }
 
-    const userDivs1 = [];
-    const userDivs2 = [];
-    const userDivs3 = [];
-    let divCounter = 1;
-    if (window.innerWidth > 1900) {
-      divCounter = 7;
-    } else if (window.innerWidth > 1600) {
-      divCounter = 6;
-    } else if (window.innerWidth > 1300) {
-      divCounter = 5;
-    } else if (window.innerWidth > 1000) {
-      divCounter = 4;
-    } else if (window.innerWidth > 600) {
-      divCounter = 3;
-    } else if (window.innerWidth > 300) {
-      divCounter = 2;
-    }
 
     let changeValue; 
     let displayCategoriesKeys = []; 
     if (this.props.categories) {
       displayCategoriesKeys = Array.from(Object.keys(this.props.categories));
     }
-    // console.log(displayCategoriesKeys);
-
-    // return (
-    //   <div>
-    //     {displayCategoriesKeys && displayCategoriesKeys[0]}
-    //     <div>Categories</div>
-    //   </div>
-    // )
 
 
-
-    if (displayCategoriesKeys.length > 1) {
-      for (let i = 0; i < divCounter && displayCategoriesKeys.length > 0; ++i) {
-        let category = displayCategoriesKeys.pop();
-        let catObj = this.props.categories[category];
-        const newStyle = Object.assign({}, elementStyle);
-        newStyle['backgroundImage'] = `url(${catObj.picture})`;
-        newStyle['backgroundSize'] = 'contain';
-        newStyle['backgroundPosition'] = 'center center';
-        newStyle['backgroundRepeat'] = 'no-repeat';
-        userDivs1.push(
-          <div key={category} style={newStyle} onClick={this.navigateUserClick(category)} >
+    let categoryItems = [];
+    for (let category in this.props.categories) {
+      const catObj = this.props.categories[category];
+      const newStyle = Object.assign({}, flexPictureStyle);
+      // newStyle['border'] = 'solid 1px white'
+      newStyle['backgroundImage'] = `url(${catObj.picture})`;
+      newStyle['backgroundSize'] = 'contain';
+      newStyle['backgroundPosition'] = 'top center';
+      newStyle['backgroundRepeat'] = 'no-repeat';
+      categoryItems.push(
+        <div key={category} style={flexItemStyle} >
+          <div style={newStyle} onClick={this.navigateUserClick(category)} >
           </div>
-        );
-      }
-      for (let i = 0; i < divCounter && displayCategoriesKeys.length > 0; ++i) {
-        let category = displayCategoriesKeys.pop();
-        let catObj = this.props.categories[category];
-        const newStyle = Object.assign({}, elementStyle);
-        newStyle['backgroundImage'] = `url(${catObj.picture})`;
-        newStyle['backgroundSize'] = 'contain';
-        newStyle['backgroundPosition'] = 'center center';
-        newStyle['backgroundRepeat'] = 'no-repeat';
-        userDivs2.push(
-          <div key={category} style={newStyle} onClick={this.navigateUserClick(category)} >
+          <div style={flexDescriptionStyle}>
+            {category}
+            <div style={viewerShipStyle}>
+              {`${Math.floor(Math.random() * 10)}k viewers`}
+            </div>
           </div>
-        );
-      }
-      for (let i = 0; i < divCounter && displayCategoriesKeys.length > 0; ++i) {
-        let category = displayCategoriesKeys.pop();
-        let catObj = this.props.categories[category];
-        const newStyle = Object.assign({}, elementStyle);
-        newStyle['backgroundImage'] = `url(${catObj.picture})`;
-        newStyle['backgroundSize'] = 'contain';
-        newStyle['backgroundPosition'] = 'center center';
-        newStyle['backgroundRepeat'] = 'no-repeat';
-        userDivs3.push(
-          <div key={category} style={newStyle} onClick={this.navigateUserClick(category)} >
-          </div>
-        );
-      }
+        </div>
+      );
     }
 
-    if (userDivs1.length + userDivs2.length + userDivs3.length < divCounter * 3) {
-
-    }
+    console.log(categoryItems);
 
     return (
       <div>
-        <div>
-          <div style={recommendedStyle}>{this.props.type}</div>
+        <div style={flexContainerStyle}>
+          {/* <div style={recommendedStyle}>{this.props.type}</div>
           <div style={listStyle}>
             {userDivs1}
           </div>
@@ -217,7 +214,8 @@ export class CategoryComponent extends React.Component {
           </div>
           <div style={listStyle}>
             {userDivs3}
-          </div>
+          </div> */}
+          {categoryItems}
         </div>
 
       </div>
