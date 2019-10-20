@@ -104,7 +104,10 @@ export class CategoryComponent extends React.Component {
       boxSizing: 'border-box',
       border: 'solid 1px black',
       fontWeight: 'bold',
-      marginTop: '4px'
+      marginTop: '4px',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
     }
     const viewerShipStyle = {
       marginTop: '2px',
@@ -200,21 +203,9 @@ export class CategoryComponent extends React.Component {
       );
     }
 
-    console.log(categoryItems);
-
     return (
       <div>
         <div style={flexContainerStyle}>
-          {/* <div style={recommendedStyle}>{this.props.type}</div>
-          <div style={listStyle}>
-            {userDivs1}
-          </div>
-          <div style={listStyle}>
-            {userDivs2}
-          </div>
-          <div style={listStyle}>
-            {userDivs3}
-          </div> */}
           {categoryItems}
         </div>
 
