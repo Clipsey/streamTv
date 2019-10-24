@@ -36,8 +36,6 @@ class Video extends React.Component {
               useFake = false;
             }
 
-            console.log(this.props.currentUser);
-            console.log(this.props.channelUser);
             startup(
               this.props.channelUser,
               this.streamKey,
@@ -175,6 +173,26 @@ class Video extends React.Component {
     const streamDebug = {
       marginTop: '20px'
     };
+    const debugHeight = window.innerWidth > 500 ? '170px' : '200px';
+    console.log(window.innerWidth);
+    const debugInfo = {
+      width: '100%',
+      height: `${debugHeight}`,
+      borderBottomRightRadius: '6px',
+      borderBottomLeftRadius: '6px',
+      backgroundColor: '#19171c',
+      border: 'solid 1px #252328',
+      boxSizing: 'border-box',
+      paddingLeft: '10px',
+      paddingBottom: '10px',
+      paddingTop: '15px'
+    };
+    const debugTitle = {
+      fontWeight: 'bold',
+      fontSize: '20px',
+      marginBottom: '5px'
+    };
+    // const
 
     return (
       <div>
@@ -243,10 +261,32 @@ class Video extends React.Component {
           {this.props.currentUser &&
             this.props.channelUser &&
             this.props.currentUser.id == this.props.channelUser.id && (
-              <p>
-                CurrentUser StreamKey:{' '}
-                {this.props.users[this.props.currentUser.id].stream_key}
-              </p>
+              <div style={debugInfo}>
+                <h3 style={debugTitle}>
+                  How to Stream - exactly the same as twitch.tv, just replace
+                  the Stream Key and Server.
+                </h3>
+                <p>
+                  To Stream to the logged in channel, you need an application
+                  such as OBS (Open Broadcasting Software).
+                </p>
+                <p>
+                  OBS will take your input feed and output a data stream that
+                  can be sent over RTMP to my Centos-Linux / DigitalOcean
+                  server.
+                </p>
+                <p>
+                  If I haven't lost you, you can use this to live stream to the
+                  logged in channel:
+                  <br />
+                  Server: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  &nbsp; &nbsp; &nbsp; &nbsp; rtmp://pitchhost.me:1935/app/
+                  <br />
+                  Current User's Stream Key: &nbsp; &nbsp; &nbsp; &nbsp;
+                  {this.props.users[this.props.currentUser.id].stream_key}
+                </p>
+              </div>
             )}
         </div>
       </div>
