@@ -17,21 +17,21 @@ export class MainBarComponent extends React.Component {
   render() {
     const mainStyle = {
       // float: 'left',
-      width: '100%',
+      width: 'calc(100% - 20px)',
       position: 'relative',
-      backgroundColor: "#0f0e11",
+      backgroundColor: '#0f0e11',
       boxSizing: 'border-box',
       borderLeft: 'solid 1px #252328',
       overflowY: 'scroll',
-      margin: '49px',
+      margin: '49px'
       // overflow: 'hidden'
-    }
+    };
     const mainContainer = {
       paddingLeft: '20px',
       paddingTop: '20px',
       paddingRight: '49px',
-      overflowX: 'hidden',
-    }
+      overflowX: 'hidden'
+    };
 
     if (this.props.location.pathname.includes(`/users/`)) {
       mainStyle['padding'] = '49px 0px';
@@ -39,14 +39,29 @@ export class MainBarComponent extends React.Component {
 
     return (
       <div style={mainStyle} id="mainBarComp">
-
         <Route path="/users/:username" component={ChannelContainer}></Route>
         <div style={mainContainer} id="mainContainer">
           <Switch>
-            <Route exact path="/users/:username" component={VideoContainer}></Route>
-            <Route exact path="/users/:username/following" component={FolloweesContainer}></Route>
-            <Route exact path="/users/:username/followers" component={FollowersContainer}></Route>
-            <Route exact path="/directory/" component={CategoryContainer}></Route>
+            <Route
+              exact
+              path="/users/:username"
+              component={VideoContainer}
+            ></Route>
+            <Route
+              exact
+              path="/users/:username/following"
+              component={FolloweesContainer}
+            ></Route>
+            <Route
+              exact
+              path="/users/:username/followers"
+              component={FollowersContainer}
+            ></Route>
+            <Route
+              exact
+              path="/directory/"
+              component={CategoryContainer}
+            ></Route>
             <Route path="/" component={IndexContainer}></Route>
           </Switch>
           <br></br>
@@ -56,8 +71,12 @@ export class MainBarComponent extends React.Component {
   }
 }
 
-
-          
-          {/* <GreetingContainer /> */ }
-{/* <AuthRoute path="/signup" component={SignupFormContainer} /> */ }
-{/* <AuthRoute path="/login" component={LoginFormContainer} /> */ }
+{
+  /* <GreetingContainer /> */
+}
+{
+  /* <AuthRoute path="/signup" component={SignupFormContainer} /> */
+}
+{
+  /* <AuthRoute path="/login" component={LoginFormContainer} /> */
+}

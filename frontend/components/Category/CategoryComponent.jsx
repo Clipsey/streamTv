@@ -10,7 +10,7 @@
 //   }
 
 //   componentDidMount() {
-//     
+//
 //   }
 
 //   shuffle(array) {
@@ -33,7 +33,6 @@
 
 //   };
 
-
 import React from 'react';
 
 export class CategoryComponent extends React.Component {
@@ -41,7 +40,7 @@ export class CategoryComponent extends React.Component {
     super(props);
     this.state = {
       users: []
-    }
+    };
     this.resize = this.resize.bind(this);
     this.navigateUserClick = this.navigateUserClick.bind(this);
   }
@@ -52,15 +51,14 @@ export class CategoryComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resize)
+    window.removeEventListener('resize', this.resize);
   }
 
   navigateUserClick(destination) {
     return () => {
       this.props.history.push(`/${destination}`);
-    }
+    };
   }
-
 
   resize() {
     clearTimeout(this.timeout);
@@ -71,9 +69,9 @@ export class CategoryComponent extends React.Component {
     const flexContainerStyle = {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap',
+      flexWrap: 'wrap'
       // justifyContent: 'space-around'
-    }
+    };
 
     const flexItemStyle = {
       display: 'flex',
@@ -87,48 +85,47 @@ export class CategoryComponent extends React.Component {
       margin: '0px 5px',
       boxSizing: 'border-box',
       backgroundColor: '#0f0e11',
-      cursor: 'pointer',
+      cursor: 'pointer'
       // position: 'relative',
       // border: 'solid 1px white',
-    
-    }
+    };
     const flexPictureStyle = {
       height: '80%',
       width: '100%',
       boxSizing: 'border-box',
-      borderRadius: '4px',
-    }
+      borderRadius: '4px'
+    };
     const flexDescriptionStyle = {
       height: '20%',
       width: '100%',
       boxSizing: 'border-box',
-      border: 'solid 1px black',
+      // border: 'solid 1px black',
       fontWeight: 'bold',
       marginTop: '4px',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      overflow: 'hidden',
-    }
+      overflow: 'hidden'
+    };
     const viewerShipStyle = {
       marginTop: '2px',
       fontWeight: '300',
       fontSize: '13px'
-    }
+    };
 
     const listStyle = {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-around',
-      marginBottom: '20px',
-    }
+      marginBottom: '20px'
+    };
 
     const recommendedStyle = {
       color: '#dad8de',
       fontSize: '16px',
       marginBottom: '15px',
       marginLeft: '5px'
-    }
+    };
 
     const elementStyle = {
       display: 'flex',
@@ -142,7 +139,7 @@ export class CategoryComponent extends React.Component {
       cursor: 'pointer',
       position: 'relative',
       borderRadius: '4px'
-    }
+    };
 
     const streamUsername = {
       minWidth: '0px',
@@ -153,32 +150,29 @@ export class CategoryComponent extends React.Component {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       position: 'absolute',
-      fontWeight: 'Bold',
+      fontWeight: 'Bold'
       // top: '80%',
       // left: '50%',
       // transform: 'translateX(-50%)'
-    }
-
+    };
 
     const regularIcon = {
       // borderRadius: '1000px',
       width: '90px',
       height: '90px',
-      margin: '15px auto',
-    }
+      margin: '15px auto'
+    };
     const miniIcon = {
       borderRadius: '1000px',
       width: '40px',
-      height: '40px',
-    }
+      height: '40px'
+    };
 
-
-    let changeValue; 
-    let displayCategoriesKeys = []; 
+    let changeValue;
+    let displayCategoriesKeys = [];
     if (this.props.categories) {
       displayCategoriesKeys = Array.from(Object.keys(this.props.categories));
     }
-
 
     let categoryItems = [];
     for (let category in this.props.categories) {
@@ -190,9 +184,9 @@ export class CategoryComponent extends React.Component {
       newStyle['backgroundPosition'] = 'top center';
       newStyle['backgroundRepeat'] = 'no-repeat';
       categoryItems.push(
-        <div key={category} style={flexItemStyle} >
-          <div style={newStyle} onClick={this.navigateUserClick(category)} >
-          {/* <div style={newStyle} > */}
+        <div key={category} style={flexItemStyle}>
+          <div style={newStyle} onClick={this.navigateUserClick(category)}>
+            {/* <div style={newStyle} > */}
           </div>
           <div style={flexDescriptionStyle}>
             {category}
@@ -206,11 +200,8 @@ export class CategoryComponent extends React.Component {
 
     return (
       <div>
-        <div style={flexContainerStyle}>
-          {categoryItems}
-        </div>
-
+        <div style={flexContainerStyle}>{categoryItems}</div>
       </div>
-    )
+    );
   }
 }
