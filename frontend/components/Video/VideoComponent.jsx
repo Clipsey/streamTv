@@ -174,7 +174,6 @@ class Video extends React.Component {
       marginTop: '20px'
     };
     const debugHeight = window.innerWidth > 500 ? '170px' : '200px';
-    console.log(window.innerWidth);
     const debugInfo = {
       width: '100%',
       height: `${debugHeight}`,
@@ -276,8 +275,8 @@ class Video extends React.Component {
                   server.
                 </p>
                 <p>
-                  If I haven't lost you, you can use this to live stream to the
-                  logged in channel:
+                  If you're still following, you can use this to live stream to
+                  the logged in channel:
                   <br />
                   Server: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
