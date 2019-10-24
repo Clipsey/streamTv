@@ -217,7 +217,7 @@ export class NavBarComponent extends React.Component {
           >
             Browse
           </div>
-          {this.props.currentUser && (
+          {/* {this.props.currentUser && (
             <div
               onClick={this.routeChange(
                 `users/${this.props.currentUser.username}`
@@ -227,7 +227,7 @@ export class NavBarComponent extends React.Component {
             >
               How To Stream
             </div>
-          )}
+          )} */}
         </section>
 
         {/* Change text color to white in change handler */}

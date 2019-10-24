@@ -21,22 +21,23 @@ const startup = (user, streamKey, cb, demo) => {
       const attempt = () => {
         hls.loadSource(`https://pitchhost.me/live/${streamKey}/index.m3u8`);
       };
-      const demoAttempt = () => {
-        hls.loadSource(sources[user.stream_category]);
+      const demoAttempt = source => {
+        hls.loadSource(source);
       };
 
-      hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+      hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
         if (videoTag != undefined) {
           videoTag.play();
           cb(true);
         }
       });
       hls.on(Hls.Events.ERROR, (event, data) => {
-        // console.log('here');
         if (demo && attemptNum < 2) {
-          console.log('using fake');
           ++attemptNum;
-          demoAttempt();
+          demoAttempt(sources[user.stream_category]);
+        } else if (!demo && attemptNum < 2) {
+          ++attemptNum;
+          // demoAttempt(sources['HowTo']);
         } else {
           cb(false);
           videoTag.pause();

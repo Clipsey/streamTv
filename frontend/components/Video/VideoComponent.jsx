@@ -36,10 +36,10 @@ class Video extends React.Component {
               useFake = false;
             }
 
-            // console.log(this.props.currentUser);
-            // console.log(this.props.channelUser);
+            console.log(this.props.currentUser);
+            console.log(this.props.channelUser);
             startup(
-              this.props.currentUser,
+              this.props.channelUser,
               this.streamKey,
               result => {
                 if (

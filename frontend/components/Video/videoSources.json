@@ -1,14 +1,15 @@
 {
-  "Poker": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Music": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "League of Legends": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Chatting": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "NBA 2K20": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Madden NFL 20": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Overwatch": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Fortnite": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "PUBG": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Art": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Path of Exile": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8",
-  "Dota 2": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8"
+  "Poker": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Poker/index.m3u8",
+  "Music": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Music/index.m3u8",
+  "League of Legends": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/League+of+Legends/index.m3u8",
+  "Chatting": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Chatting/index.m3u8",
+  "NBA 2K20": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/NBA+2k20/index.m3u8",
+  "Madden NFL 20": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Madden+NFL+20/index.m3u8",
+  "Overwatch": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Overwatch/index.m3u8",
+  "Fortnite": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Fortnite/index.m3u8",
+  "PUBG": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/PUBG/index.m3u8",
+  "Art": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Art/output.m3u8",
+  "Path of Exile": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Path+of+Exile/index.m3u8",
+  "Dota 2": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/Dota+2/index.m3u8",
+  "HowTo": "https://ryan-sabik-bucket.s3-us-west-1.amazonaws.com/index.m3u8"
 }
