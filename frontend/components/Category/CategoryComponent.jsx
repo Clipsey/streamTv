@@ -192,6 +192,7 @@ export class CategoryComponent extends React.Component {
       categoryItems.push(
         <div key={category} style={flexItemStyle} >
           <div style={newStyle} onClick={this.navigateUserClick(category)} >
+          {/* <div style={newStyle} > */}
           </div>
           <div style={flexDescriptionStyle}>
             {category}
