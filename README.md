@@ -11,14 +11,8 @@ My attempt at a clone of a twitch.tv, a livestreaming website for a variety of c
 
 - [Installation](#installation)
 - [Usage](#usage)
-    - [Database](#database)
-    - [Extension](#extension)
-- [Page setup](#page-setup)
-    - [Upload the page tree file](#upload-the-page-tree-file)
-    - [Go to the import view](#go-to-the-import-view)
-    - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
-- [License](#license)
-- [Links](#links)
+- [Technologies](#technologies)
+
 
 ## Installation
 
@@ -42,7 +36,7 @@ On the `Directory / Categories Page`, there is a list of categories displayed, w
 On the `Channel / Users Page`, the user's video content, as well as the user's stream title, category, and some dummy tags displayed. The video being shown, is a streaming video from AWS / S3 Bucket, unless the user is streaming a live video, then the live stream will be displayed instead of a placeholder video.
 
 
-### Technologies
+## Technologies
 
 * React.js
 * Redux
