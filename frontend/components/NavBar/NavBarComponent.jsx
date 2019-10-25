@@ -169,8 +169,9 @@ export class NavBarComponent extends React.Component {
       BrowseStyle['borderBottom'] = 'solid 1.5px white';
       BrowseStyle['lineHeight'] = '53.5px';
     } else if (
+      this.props.currentUser &&
       this.props.location.pathname ===
-      `/users/${this.props.currentUser.username}`
+        `/users/${this.props.currentUser.username}`
     ) {
       HowToStyle['color'] = 'white';
       HowToStyle['borderBottom'] = 'solid 1.5px white';
@@ -217,7 +218,7 @@ export class NavBarComponent extends React.Component {
           >
             Browse
           </div>
-          {/* {this.props.currentUser && (
+          {this.props.currentUser && (
             <div
               onClick={this.routeChange(
                 `users/${this.props.currentUser.username}`
@@ -227,7 +228,7 @@ export class NavBarComponent extends React.Component {
             >
               How To Stream
             </div>
-          )} */}
+          )}
         </section>
 
         {/* Change text color to white in change handler */}

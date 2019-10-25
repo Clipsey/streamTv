@@ -37,7 +37,7 @@ const startup = (user, streamKey, cb, demo) => {
           demoAttempt(sources[user.stream_category]);
         } else if (!demo && attemptNum < 2) {
           ++attemptNum;
-          // demoAttempt(sources['HowTo']);
+          demoAttempt(sources['HowTo']);
         } else {
           cb(false);
           videoTag.pause();
