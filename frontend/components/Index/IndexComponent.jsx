@@ -38,7 +38,6 @@ export class IndexComponent extends React.Component {
 
     this.props.getUsers(request).then(action => {
       let users = Object.values(action.users);
-      console.log(users);
       this.shuffle(users);
       this.setState({
         users
@@ -176,22 +175,15 @@ export class IndexComponent extends React.Component {
       divCounter = 2;
     }
 
-    // console.log(this.state.users);
-    // console.log(this.props.location.pathname);
     let displayUsers;
     if (this.props.location.pathname !== '/') {
       const users = this.state.users.filter(user => {
-        console.log(
-          this.props.location.pathname.includes(user.stream_category)
-        );
         return this.props.location.pathname.includes(user.stream_category);
       });
       displayUsers = Array.from(users);
     } else {
       displayUsers = Array.from(this.state.users);
     }
-
-    // console.log(displayUsers);
 
     if (displayUsers.length >= 1) {
       for (let i = 0; i < divCounter && displayUsers.length > 0; ++i) {
