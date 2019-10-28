@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     # if params[:request]['all'] == true return all users
     # if params[:request]['size'] then get params[:request]['size] random amount
     users = {}
-    if params[:request][:all] == true
+    if params[:request][:all] == "true"
       users_list = User.all
       users_list.each do |user|
         user_data = {

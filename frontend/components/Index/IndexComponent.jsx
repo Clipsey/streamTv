@@ -1,5 +1,5 @@
 import React from 'react';
-// import 
+// import
 // import image from '../../../app/assets/images/Combo_Purple_RGB.png';
 
 export class IndexComponent extends React.Component {
@@ -7,12 +7,12 @@ export class IndexComponent extends React.Component {
     super(props);
     this.state = {
       users: []
-    }
+    };
     this.resize = this.resize.bind(this);
     this.navigateUserClick = this.navigateUserClick.bind(this);
   }
 
-  shuffle (array) {
+  shuffle(array) {
     var currentIndex = array.length;
     var temporaryValue, randomIndex;
 
@@ -29,37 +29,35 @@ export class IndexComponent extends React.Component {
     }
 
     return array;
-
-  };
+  }
 
   componentDidMount() {
     const request = {
-      all: false,
-      size: 24
-    }
-    
-    this.props.getUsers(request).then((action) => {
-      const users = Object.values(action.users);
+      all: true
+    };
+
+    this.props.getUsers(request).then(action => {
+      let users = Object.values(action.users);
+      console.log(users);
       this.shuffle(users);
       this.setState({
         users
-      })
+      });
     });
 
     window.addEventListener('resize', this.resize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resize)
+    window.removeEventListener('resize', this.resize);
   }
 
   navigateUserClick(username) {
     return () => {
       this.props.history.push(`/users/${username}`);
-    }
+    };
   }
 
-  
   resize() {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(this.forceUpdate.bind(this), 0);
@@ -72,14 +70,14 @@ export class IndexComponent extends React.Component {
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       marginBottom: '20px'
-    }
-    
+    };
+
     const recommendedStyle = {
       color: '#dad8de',
       fontSize: '16px',
       marginBottom: '15px',
       marginLeft: '5px'
-    }
+    };
 
     const elementStyle = {
       display: 'flex',
@@ -90,8 +88,8 @@ export class IndexComponent extends React.Component {
       boxSizing: 'border-box',
       backgroundColor: '#19171c',
       cursor: 'pointer'
-    }
-    
+    };
+
     const bottomStyle = {
       height: '60px',
       width: '100%',
@@ -102,7 +100,7 @@ export class IndexComponent extends React.Component {
       display: 'flex',
       flexDirection: 'flex-start',
       cursor: 'default'
-    }
+    };
 
     const infoStyle = {
       display: 'flex',
@@ -112,7 +110,7 @@ export class IndexComponent extends React.Component {
       marginLeft: '10px',
       width: '100%',
       position: 'relative'
-    }
+    };
 
     const streamTitle = {
       minWidth: '0px',
@@ -123,7 +121,7 @@ export class IndexComponent extends React.Component {
       textOverflow: 'ellipsis',
       position: 'absolute',
       width: '85%'
-    }
+    };
     const streamUsername = {
       minWidth: '0px',
       color: '#b8b5c0',
@@ -135,7 +133,7 @@ export class IndexComponent extends React.Component {
       position: 'absolute',
       top: '20px',
       width: '85%'
-    }
+    };
     const streamCategory = {
       minWidth: '0px',
       color: '#b8b5c0',
@@ -146,20 +144,19 @@ export class IndexComponent extends React.Component {
       position: 'absolute',
       top: '35px',
       width: '85%'
-    }
-
+    };
 
     const regularIcon = {
       borderRadius: '1000px',
       width: '90px',
       height: '90px',
-      margin: '15px auto',
-    }
+      margin: '15px auto'
+    };
     const miniIcon = {
       borderRadius: '1000px',
       width: '40px',
-      height: '40px',
-    }
+      height: '40px'
+    };
 
     const userDivs1 = [];
     const userDivs2 = [];
@@ -179,12 +176,32 @@ export class IndexComponent extends React.Component {
       divCounter = 2;
     }
 
-    let displayUsers = Array.from(this.state.users);
-    if (displayUsers.length > 1) {
-      for (let i = 0; i < divCounter; ++i) {
+    // console.log(this.state.users);
+    // console.log(this.props.location.pathname);
+    let displayUsers;
+    if (this.props.location.pathname !== '/') {
+      const users = this.state.users.filter(user => {
+        console.log(
+          this.props.location.pathname.includes(user.stream_category)
+        );
+        return this.props.location.pathname.includes(user.stream_category);
+      });
+      displayUsers = Array.from(users);
+    } else {
+      displayUsers = Array.from(this.state.users);
+    }
+
+    // console.log(displayUsers);
+
+    if (displayUsers.length >= 1) {
+      for (let i = 0; i < divCounter && displayUsers.length > 0; ++i) {
         let user = displayUsers.pop();
         userDivs1.push(
-          <div key={user.username} style={elementStyle} onClick={this.navigateUserClick(user.username)} >
+          <div
+            key={user.username}
+            style={elementStyle}
+            onClick={this.navigateUserClick(user.username)}
+          >
             <div className="backgroundImageForIndex">
               <div style={regularIcon}>
                 <img style={regularIcon} src={user.picture}></img>
@@ -203,10 +220,14 @@ export class IndexComponent extends React.Component {
           </div>
         );
       }
-      for (let i = 0; i < divCounter; ++i) {
+      for (let i = 0; i < divCounter && displayUsers.length > 0; ++i) {
         let user = displayUsers.pop();
         userDivs2.push(
-          <div key={user.username} style={elementStyle} onClick={this.navigateUserClick(user.username)} >
+          <div
+            key={user.username}
+            style={elementStyle}
+            onClick={this.navigateUserClick(user.username)}
+          >
             <div className="backgroundImageForIndex">
               <div style={regularIcon}>
                 <img style={regularIcon} src={user.picture}></img>
@@ -223,13 +244,17 @@ export class IndexComponent extends React.Component {
               </div>
             </div>
           </div>
-        )
+        );
       }
-      for (let i = 0; i < divCounter; ++i) {
+      for (let i = 0; i < divCounter && displayUsers.length > 0; ++i) {
         let user = displayUsers.pop();
         userDivs3.push(
-          <div key={user.username} style={elementStyle} onClick={this.navigateUserClick(user.username)} >
-            <div className="backgroundImageForIndex" >
+          <div
+            key={user.username}
+            style={elementStyle}
+            onClick={this.navigateUserClick(user.username)}
+          >
+            <div className="backgroundImageForIndex">
               <div style={regularIcon}>
                 <img style={regularIcon} src={user.picture}></img>
               </div>
@@ -237,7 +262,7 @@ export class IndexComponent extends React.Component {
             <div style={bottomStyle}>
               <div style={miniIcon}>
                 <img style={miniIcon} src={user.picture}></img>
-              </div>              
+              </div>
               <div style={infoStyle}>
                 <div style={streamTitle}>{user.stream_title}</div>
                 <div style={streamUsername}>{user.username}</div>
@@ -245,28 +270,29 @@ export class IndexComponent extends React.Component {
               </div>
             </div>
           </div>
-        )
+        );
       }
     }
 
-    console.log()
+    const displayCategoryTitle = this.props.location.pathname !== '/';
+    const category = this.props.location.pathname.slice(1);
 
     return (
-      <div> 
-        <div> 
-          <div style={recommendedStyle}>Just Some Random Channels</div>
-          <div style={listStyle}>
-            {userDivs1}
-          </div>
-          <div style={listStyle}>
-            {userDivs2}
-          </div>
-          <div style={listStyle}>
-            {userDivs3}
-          </div>
+      <div>
+        <div>
+          {displayCategoryTitle && (
+            <div style={recommendedStyle}>
+              All channels associated with category: {category}
+            </div>
+          )}
+          {!displayCategoryTitle && (
+            <div style={recommendedStyle}>Just Some Random Channels</div>
+          )}
+          <div style={listStyle}>{userDivs1}</div>
+          <div style={listStyle}>{userDivs2}</div>
+          <div style={listStyle}>{userDivs3}</div>
         </div>
-
       </div>
-    )
+    );
   }
 }

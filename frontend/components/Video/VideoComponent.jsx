@@ -203,8 +203,8 @@ class Video extends React.Component {
             controls
             // width="100%"
             // height="100%"
-            // autoPlay={true}
-            // muted={true}
+            autoPlay={true}
+            muted={true}
             // onClick={this.retry(true)}
           />
         </div>

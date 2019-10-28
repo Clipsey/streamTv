@@ -171,7 +171,7 @@ export class NavBarComponent extends React.Component {
     } else if (
       this.props.currentUser &&
       this.props.location.pathname ===
-        `/users/${this.props.currentUser.username}`
+        `/users/${this.props.currentUser.username}/HowTo`
     ) {
       HowToStyle['color'] = 'white';
       HowToStyle['borderBottom'] = 'solid 1.5px white';
