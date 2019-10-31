@@ -3,3 +3,7 @@
   /* top: 1px; */
   margin-top: -1px;
 }
+
+.hoverButton:hover {
+  cursor: pointer;
+}

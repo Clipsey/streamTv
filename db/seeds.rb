@@ -128,7 +128,7 @@
 
   file = open('https://twitch-name-dev.s3-us-west-1.amazonaws.com/151223.png')
   stream_key = SecureRandom::hex(20)
-  bluegrass = User.create(username: "bluegrass", password: "123456", dob: date_value4, email: "bluegrass@TestingMail.com", stream_key: stream_key, stream_title: "No more donations!", stream_category: "League Of Legends", category_id: lol.id)
+  bluegrass = User.create(username: "bluegrass", password: "123456", dob: date_value4, email: "bluegrass@TestingMail.com", stream_key: stream_key, stream_title: "No more donations!", stream_category: "League of Legends", category_id: lol.id)
   bluegrass.photo.attach(io: file, filename: '151223.png')
  
   file = open('https://twitch-name-dev.s3-us-west-1.amazonaws.com/54078.jpg')
@@ -259,6 +259,27 @@
   stream_key = SecureRandom::hex(20)
   UpsideDown = User.create(username: "UpsideDown", password: "123456", dob: date_value4, email: "UpsideDown@TestingMail.com", stream_key: stream_key, stream_title: "Computer Champ | Console Queen", stream_category: "Path of Exile", category_id: path_of_exile.id)
   UpsideDown.photo.attach(io: file, filename: '201079.jpg')
+
+  tags = ['Comp', 'Happy', 'Fun', 'Messing Around', 'Family Friendly', 'Joy Joy', 'Flavor']
+  tags_length = tags.length
+  users_length = User.all.length
+  start_index = User.first.id
+  last_index = User.last.id
+  (start_index..last_index).each do |index|
+    user = User.find(index)
+    tag_amount = rand((1...tags_length))
+    used_tags = Hash.new{|h, k| h[k] = false}
+    while tag_amount > 0 do
+      tag_index = rand(tags_length)
+      while used_tags[tag_index] == true do
+        tag_index = rand(tags_length)
+      end
+      used_tags[tag_index] = true
+      user.tags.push(tags[tag_index])
+      tag_amount -= 1
+      user.save
+    end
+  end
  
   relations = Hash.new {|h, k| h[k] = Hash.new(false) }
   (0...250).each do |count|
@@ -272,6 +293,5 @@
     relations[follower.id][followee.id] = true
     follow = Api::Follow.create(followee_id: followee.id, follower_id: follower.id)
   end
-  
 
 # end

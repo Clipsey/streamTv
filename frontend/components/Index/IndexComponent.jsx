@@ -175,14 +175,34 @@ export class IndexComponent extends React.Component {
       divCounter = 2;
     }
 
+    let path = this.props.location.pathname.substring(1);
+    const allTags = [
+      'Comp',
+      'Happy',
+      'Fun',
+      'Messing Around',
+      'Family Friendly',
+      'Joy Joy',
+      'Flavor'
+    ];
+
     let displayUsers;
-    if (this.props.location.pathname !== '/') {
+    let IndexTitle = '';
+    if (path === '') {
+      IndexTitle = 'Just Some Random Channels';
+      displayUsers = Array.from(this.state.users);
+    } else if (!allTags.includes(path)) {
+      IndexTitle = `All channels under Category: ${path}`;
       const users = this.state.users.filter(user => {
         return this.props.location.pathname.includes(user.stream_category);
       });
       displayUsers = Array.from(users);
     } else {
-      displayUsers = Array.from(this.state.users);
+      IndexTitle = `All channels with Tag: ${path}`;
+      const users = this.state.users.filter(user => {
+        return user.tags.includes(path);
+      });
+      displayUsers = Array.from(users);
     }
 
     if (displayUsers.length >= 1) {
@@ -266,20 +286,10 @@ export class IndexComponent extends React.Component {
       }
     }
 
-    const displayCategoryTitle = this.props.location.pathname !== '/';
-    const category = this.props.location.pathname.slice(1);
-
     return (
       <div>
         <div>
-          {displayCategoryTitle && (
-            <div style={recommendedStyle}>
-              All channels associated with category: {category}
-            </div>
-          )}
-          {!displayCategoryTitle && (
-            <div style={recommendedStyle}>Just Some Random Channels</div>
-          )}
+          <div style={recommendedStyle}>{IndexTitle}</div>
           <div style={listStyle}>{userDivs1}</div>
           <div style={listStyle}>{userDivs2}</div>
           <div style={listStyle}>{userDivs3}</div>

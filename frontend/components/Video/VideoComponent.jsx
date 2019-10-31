@@ -13,6 +13,24 @@ class Video extends React.Component {
     this.maxSize = '100%';
   }
 
+  routeChange(arg) {
+    if (arg === 'category') {
+      return () => {
+        if (
+          this.props.location.pathname ===
+          `/${this.props.channelUser.stream_category}`
+        )
+          return;
+        this.props.history.push(`/${this.props.channelUser.stream_category}`);
+      };
+    } else {
+      return () => {
+        if (this.props.location.pathname === `/${arg}`) return;
+        this.props.history.push(`/${arg}`);
+      };
+    }
+  }
+
   retry(force) {
     return prevProps => {
       // debugger;
@@ -193,6 +211,22 @@ class Video extends React.Component {
     };
     // const
 
+    let Tags;
+
+    if (this.props.channelUser) {
+      Tags = this.props.channelUser.tags.map(tag => {
+        return (
+          <div
+            style={TagStyle}
+            onClick={this.routeChange(tag)}
+            className="hoverButton"
+          >
+            {tag}
+          </div>
+        );
+      });
+    }
+
     return (
       <div>
         <div className="video-box" id="videoContainer" style={videoContainer}>
@@ -228,15 +262,16 @@ class Video extends React.Component {
             <div style={streamInfoTitle}>
               {this.props.channelUser && this.props.channelUser.stream_title}
             </div>
-            <div style={streamInfoCategory}>
+            <div
+              style={streamInfoCategory}
+              class="hoverButton"
+              onClick={this.routeChange('category')}
+            >
               Category:{' '}
               {this.props.channelUser && this.props.channelUser.stream_category}
             </div>
             <div style={streamInfoTagsAndViewsContainer}>
-              <div style={streamInfoTags}>
-                <div style={TagStyle}>Tag1</div>
-                <div style={TagStyle}>Tag2</div>
-              </div>
+              <div style={streamInfoTags}>{Tags}</div>
               <div style={streamInfoViewsContainer}>
                 <div style={streamInfoViewImage}>
                   <svg

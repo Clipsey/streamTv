@@ -14,7 +14,8 @@ class Api::UsersController < ApplicationController
           stream_key: user.stream_key,
           stream_title: user.stream_title,
           stream_category: user.stream_category,
-          picture: url_for(user.photo)
+          picture: url_for(user.photo),
+          tags: user.tags
         }
         users[user_data[:id]] = user_data
       end
@@ -31,7 +32,8 @@ class Api::UsersController < ApplicationController
           stream_key: user.stream_key,
           stream_title: user.stream_title,
           stream_category: user.stream_category,
-          picture: url_for(user.photo)
+          picture: url_for(user.photo),
+          tags: user.tags
         }
       end
     elsif params[:request][:category]
@@ -43,7 +45,8 @@ class Api::UsersController < ApplicationController
           stream_key: user.stream_key,
           stream_title: user.stream_title,
           stream_category: user.stream_category,
-          picture: url_for(user.photo)
+          picture: url_for(user.photo),
+          tags: user.tags
         }
         users[user_data[:id]] = user_data
       end
@@ -82,6 +85,7 @@ class Api::UsersController < ApplicationController
     file = open('https://twitch-name-dev.s3-us-west-1.amazonaws.com/27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
     @user.photo.attach(io: file, filename: '27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-70x70.jpg')
     @user.category_id = Category.find_by(title: "Poker").id
+    @user.tags = ['New User']
 
     if @user.save
       login!(@user)
@@ -91,7 +95,8 @@ class Api::UsersController < ApplicationController
         stream_key: @user.stream_key,
         stream_title: @user.stream_title,
         stream_category: @user.stream_category,
-        picture: url_for(@user.photo)
+        picture: url_for(@user.photo),
+        tags: @user.tags
       }
       render json: to_send
     else
@@ -111,7 +116,8 @@ class Api::UsersController < ApplicationController
           stream_key: @user.stream_key,
           stream_title: @user.stream_title,
           stream_category: @user.stream_category,
-          picture: url_for(@user.photo)
+          picture: url_for(@user.photo),
+          tags: @user.tags
         }
         render json: to_send
       else
@@ -126,7 +132,8 @@ class Api::UsersController < ApplicationController
           stream_key: @user.stream_key,
           stream_title: @user.stream_title,
           stream_category: @user.stream_category,
-          picture: url_for(@user.photo)
+          picture: url_for(@user.photo),
+          tags: @user.tags
         }
         
         render json: to_send
